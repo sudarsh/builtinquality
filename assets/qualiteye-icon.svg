@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Q outer ring -->
+  <circle cx="47" cy="47" r="32" fill="white"/>
+  <!-- Q inner cutout -->
+  <circle cx="47" cy="47" r="20" fill="#111111"/>
+  <!-- Q tail -->
+  <rect x="66" y="62" width="10" height="24" rx="5" fill="white" transform="rotate(-45 71 74)"/>
+  <!-- Eye white (iris background) -->
+  <circle cx="47" cy="47" r="12" fill="white"/>
+  <!-- Pupil -->
+  <circle cx="47" cy="47" r="7" fill="#111111"/>
+  <!-- Shine dot -->
+  <circle cx="51" cy="43" r="2.5" fill="white"/>
+</svg>
