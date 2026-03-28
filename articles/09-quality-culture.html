@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Building a Quality-First Engineering Culture — Built In Quality</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Outfit:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/article.css" />
+  <meta name="description" content="Quality culture doesn't come from tools — it comes from how your team thinks. A management playbook for embedding quality mindset across product, dev, and QA." />
+  <meta name="keywords" content="quality engineering culture, QA manager playbook, build quality culture, three amigos, definition of done, shift-left testing culture, engineering leadership" />
+  <meta name="author" content="Sudarsh" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://builtinquality.dev/articles/09-quality-culture.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Built In Quality" />
+  <meta property="og:title" content="How to Build a Quality-First Engineering Culture as a QA Manager" />
+  <meta property="og:description" content="Quality culture doesn't come from tools — it comes from how your team thinks. A management playbook for embedding quality mindset across product, dev, and QA." />
+  <meta property="og:url" content="https://builtinquality.dev/articles/09-quality-culture.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="How to Build a Quality-First Engineering Culture as a QA Manager" />
+  <meta name="twitter:description" content="Quality culture doesn't come from tools — it comes from how your team thinks. A management playbook for embedding quality mindset across product, dev, and QA." />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Build a Quality-First Engineering Culture as a QA Manager",
+    "description": "Quality culture doesn't come from tools — it comes from how your team thinks. A management playbook for embedding quality mindset across product, dev, and QA.",
+    "datePublished": "2025-11-20",
+    "url": "https://builtinquality.dev/articles/09-quality-culture.html",
+    "mainEntityOfPage": "https://builtinquality.dev/articles/09-quality-culture.html",
+    "author": { "@type": "Person", "name": "Sudarsh", "url": "https://builtinquality.dev/#about" },
+    "publisher": { "@type": "Organization", "name": "Built In Quality", "url": "https://builtinquality.dev" }
+  }
+  </script>
+</head>
+<body>
+<nav>
+  <a class="logo" href="../index.html">Built<span>In</span>Quality<span>.dev</span></a>
+  <a class="nav-back" href="../index.html">← Back to all articles</a>
+</nav>
+<div class="article-hero">
+  <span class="article-tag tag-quality">Engineering Culture</span>
+  <h1>How to Build a Quality-First Engineering Culture as a QA Manager</h1>
+  <div class="article-meta">
+    <div class="meta-author"><div class="meta-avatar">S</div><div><div class="meta-name">Sudarsh</div><div class="meta-role">QA Engineering Manager</div></div></div>
+    <span class="meta-sep">·</span><span class="meta-date">Nov 20, 2025</span><span class="meta-sep">·</span><span class="meta-read">13 min read</span>
+  </div>
+</div>
+<div class="article-body">
+  <p>I joined SpotDraft as the first QA hire. There was no process, no automation, and no shared understanding of what "quality" meant across the team. Within two years, I had built a 12-member QA team and, more importantly, a quality-first engineering culture that extended well beyond the QA team itself. This is what I learned.</p>
+
+  <h2>Culture Cannot Be Mandated — It Must Be Demonstrated</h2>
+  <p>The biggest mistake new QA managers make is trying to enforce quality through process — mandatory checklists, approval gates, test sign-off forms. These things create friction, not culture. Real quality culture happens when the team internalises quality as their own standard, not as an external requirement.</p>
+  <p>The way to build that internalisation is through demonstration. Show what good quality looks like. Celebrate when a developer writes a thoughtful unit test. Highlight when a bug caught in requirements review saved a week of rework. Make the value of quality tangible and visible.</p>
+
+  <h2>The Five Pillars of Quality Culture</h2>
+
+  <h3>1. Shared Ownership of Quality</h3>
+  <p>In a quality-first culture, quality is not the QA team's responsibility — it is everyone's responsibility. Developers own the quality of their code. Product managers own the quality of requirements. Designers own the testability of their designs. QA owns the quality strategy, the tooling, and the standards — but not the quality itself.</p>
+  <p>To make this real, remove language like "it's in QA" from your team's vocabulary. Replace it with "it's ready for verification" — a subtle but significant shift that implies the developer already believes their code is correct.</p>
+
+  <h3>2. Psychological Safety Around Bugs</h3>
+  <p>Teams that punish bug reporters produce teams that hide bugs. Create an environment where finding a bug — in your own code or someone else's — is celebrated, not feared. A bug found in development is a win. A bug found in production is a learning opportunity. Neither should result in blame.</p>
+  <div class="callout">
+    <strong>Blameless postmortems</strong> are the single most effective cultural tool I have used. When something goes wrong in production, the question is never "who did this?" — it is always "what in our process allowed this to happen, and how do we fix the process?"
+  </div>
+
+  <h3>3. Quality Metrics That Drive Behaviour</h3>
+  <p>What you measure shapes what your team values. Choose quality metrics carefully:</p>
+  <ul>
+    <li><strong>Good metrics:</strong> Defect escape rate (bugs reaching production), test coverage trends, mean time to detect, deployment frequency with quality gates passing.</li>
+    <li><strong>Dangerous metrics:</strong> Bug count per developer (creates hiding behaviour), test case count (creates low-value test inflation), percentage of tests passing (teams fix tests instead of code).</li>
+  </ul>
+
+  <h3>4. QA as a Knowledge Hub</h3>
+  <p>The best QA engineers I have worked with are also the team's best system thinkers. They understand the product end-to-end better than almost anyone. Position your QA team as knowledge holders — the people who can answer "what happens if X goes wrong" for any part of the system. This elevates QA's value far beyond test execution.</p>
+
+  <h3>5. Continuous Learning and Tooling Investment</h3>
+  <p>Quality tooling evolves fast — AI-assisted testing, self-healing selectors, visual regression, performance monitoring. Invest in your team's ability to adopt new tools and approaches. A QA team that is always learning is a QA team that is always improving your quality bar.</p>
+
+  <h2>Practical Steps for the First 90 Days as a QA Manager</h2>
+  <ul>
+    <li><strong>Days 1–30:</strong> Observe, listen, and map the current state. What breaks most often? Where are the biggest quality gaps? What does the team already care about?</li>
+    <li><strong>Days 31–60:</strong> Introduce one lightweight process improvement that solves a visible pain point. Quick wins build credibility and buy-in for bigger changes.</li>
+    <li><strong>Days 61–90:</strong> Establish the quality metrics dashboard. Make quality visible to the whole team, not just QA. Begin Three Amigos sessions for new features.</li>
+  </ul>
+
+  <div class="callout green">
+    <strong>The most important thing I learned:</strong> QA managers are culture architects. The technical skills matter, but the ability to influence how an entire team thinks about quality is what separates good QA managers from great ones.
+  </div>
+
+  <hr class="article-divider" />
+  <div class="key-takeaways">
+    <h3>// Key Takeaways</h3>
+    <ul>
+      <li>Quality culture is built through demonstration and visibility, not through mandated process.</li>
+      <li>Shared ownership means everyone is responsible for quality — QA owns the strategy, not the quality itself.</li>
+      <li>Blameless postmortems are the most powerful cultural tool for sustainable quality improvement.</li>
+      <li>Measure defect escape rate and deployment quality, not bug counts per developer.</li>
+      <li>The first 90 days as a QA manager should focus on observation, one quick win, and metric visibility.</li>
+    </ul>
+  </div>
+</div>
+<div class="article-nav">
+  <a href="08-github-actions-gates.html">← Previous: GitHub Actions Gates</a>
+  <a href="10-ai-reshaping-qa.html">Next: AI Reshaping QA →</a>
+</div>
+</body>
+</html>

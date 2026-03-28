@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quality Gates in GitHub Actions — Built In Quality</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Outfit:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/article.css" />
+  <meta name="description" content="How to configure GitHub Actions workflows with strict quality gates — fail fast on test failures, coverage thresholds, and performance budgets." />
+  <meta name="keywords" content="GitHub Actions quality gates, CI quality check, coverage threshold GitHub Actions, block deploy on failure, required status checks, DevOps quality" />
+  <meta name="author" content="Sudarsh" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://builtinquality.dev/articles/08-github-actions-gates.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Built In Quality" />
+  <meta property="og:title" content="Quality Gates in GitHub Actions — Blocking Bad Code Before It Ships" />
+  <meta property="og:description" content="How to configure GitHub Actions workflows with strict quality gates — fail fast on test failures, coverage thresholds, and performance budgets." />
+  <meta property="og:url" content="https://builtinquality.dev/articles/08-github-actions-gates.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Quality Gates in GitHub Actions — Blocking Bad Code Before It Ships" />
+  <meta name="twitter:description" content="How to configure GitHub Actions workflows with strict quality gates — fail fast on test failures, coverage thresholds, and performance budgets." />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Quality Gates in GitHub Actions — Blocking Bad Code Before It Ships",
+    "description": "How to configure GitHub Actions workflows with strict quality gates — fail fast on test failures, coverage thresholds, and performance budgets.",
+    "datePublished": "2025-10-28",
+    "url": "https://builtinquality.dev/articles/08-github-actions-gates.html",
+    "mainEntityOfPage": "https://builtinquality.dev/articles/08-github-actions-gates.html",
+    "author": { "@type": "Person", "name": "Sudarsh", "url": "https://builtinquality.dev/#about" },
+    "publisher": { "@type": "Organization", "name": "Built In Quality", "url": "https://builtinquality.dev" }
+  }
+  </script>
+</head>
+<body>
+<nav>
+  <a class="logo" href="../index.html">Built<span>In</span>Quality<span>.dev</span></a>
+  <a class="nav-back" href="../index.html">← Back to all articles</a>
+</nav>
+<div class="article-hero">
+  <span class="article-tag tag-cicd">Pipeline</span>
+  <h1>Quality Gates in GitHub Actions — Blocking Bad Code Before It Ships</h1>
+  <div class="article-meta">
+    <div class="meta-author"><div class="meta-avatar">S</div><div><div class="meta-name">Sudarsh</div><div class="meta-role">QA Engineering Manager</div></div></div>
+    <span class="meta-sep">·</span><span class="meta-date">Oct 28, 2025</span><span class="meta-sep">·</span><span class="meta-read">11 min read</span>
+  </div>
+</div>
+<div class="article-body">
+  <p>GitHub Actions is the most accessible CI/CD platform for most teams today. But having a pipeline is not enough. The difference between a pipeline that delivers confidence and one that is just going through the motions is quality gates — hard stops that prevent bad code from advancing.</p>
+
+  <h2>What a Quality Gate Actually Is</h2>
+  <p>A quality gate is a condition that must be met before a job can proceed. In GitHub Actions, gates are implemented through three mechanisms: job dependencies (<code>needs</code>), status checks on pull requests, and branch protection rules. Together, they form a pipeline that physically cannot deploy unless all quality criteria pass.</p>
+
+  <h2>Complete Quality Pipeline YAML</h2>
+  <div class="code-block">
+    <div class="code-header"><div class="dot d1"></div><div class="dot d2"></div><div class="dot d3"></div> .github/workflows/quality-pipeline.yml</div>
+    <pre>name: Quality Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint:
+    name: Static Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20', cache: 'npm' }
+      - run: npm ci
+      - run: npm run lint
+      - run: npm run type-check
+
+  unit-tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    needs: lint
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20', cache: 'npm' }
+      - run: npm ci
+      - run: npm run test:coverage
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage-report
+          path: coverage/
+
+  e2e-tests:
+    name: E2E Tests (Playwright)
+    runs-on: ubuntu-latest
+    needs: unit-tests
+    strategy:
+      matrix:
+        browser: [chromium, firefox]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20', cache: 'npm' }
+      - run: npm ci
+      - run: npx playwright install --with-deps ${{ matrix.browser }}
+      - run: npx playwright test --project=${{ matrix.browser }}
+        env:
+          BASE_URL: ${{ secrets.STAGING_URL }}
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report-${{ matrix.browser }}
+          path: playwright-report/
+
+  deploy:
+    name: Deploy to Production
+    runs-on: ubuntu-latest
+    needs: [lint, unit-tests, e2e-tests]
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - name: Deploy
+        run: ./scripts/deploy.sh
+        env:
+          DEPLOY_TOKEN: ${{ secrets.DEPLOY_TOKEN }}</pre>
+  </div>
+
+  <h2>Branch Protection Rules</h2>
+  <p>Workflow files alone are not enough. A developer can bypass them by pushing directly to main. Branch protection rules enforce that all status checks must pass before merging:</p>
+  <ol>
+    <li>Go to your repo → Settings → Branches</li>
+    <li>Add a rule for the <code>main</code> branch</li>
+    <li>Enable: Require status checks to pass before merging</li>
+    <li>Add: <code>lint</code>, <code>unit-tests</code>, <code>e2e-tests (chromium)</code>, <code>e2e-tests (firefox)</code></li>
+    <li>Enable: Require branches to be up to date before merging</li>
+    <li>Enable: Do not allow bypassing the above settings</li>
+  </ol>
+
+  <div class="callout amber">
+    <strong>Do not allow bypassing:</strong> This is the most commonly skipped setting, and it is the most important one. Even repository admins should not be able to bypass quality gates under normal circumstances.
+  </div>
+
+  <h2>Making Pull Requests Quality Reviews</h2>
+  <p>Configure your PR template to include quality context:</p>
+  <div class="code-block">
+    <div class="code-header"><div class="dot d1"></div><div class="dot d2"></div><div class="dot d3"></div> .github/pull_request_template.md</div>
+    <pre>## What does this PR do?
+
+## How was it tested?
+- [ ] Unit tests added/updated
+- [ ] E2E tests added/updated  
+- [ ] Tested manually on staging
+- [ ] Visual snapshots updated (if UI changed)
+
+## Quality checklist
+- [ ] No new lint warnings
+- [ ] Coverage did not decrease
+- [ ] No flaky tests introduced
+- [ ] data-testid attributes added for new UI elements</pre>
+  </div>
+
+  <hr class="article-divider" />
+  <div class="key-takeaways">
+    <h3>// Key Takeaways</h3>
+    <ul>
+      <li>Use <code>needs</code> dependencies to create a hard quality gate chain in your pipeline.</li>
+      <li>Branch protection rules are the enforcement layer — without them, gates can be bypassed.</li>
+      <li>Always upload test reports and coverage as CI artifacts for every run.</li>
+      <li>A PR template with quality checkboxes creates accountability and documents what was tested.</li>
+    </ul>
+  </div>
+</div>
+<div class="article-nav">
+  <a href="07-allure-reporting.html">← Previous: Allure Reporting</a>
+  <a href="09-quality-culture.html">Next: Quality Culture →</a>
+</div>
+</body>
+</html>

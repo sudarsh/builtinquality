@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Designing for Testability — Built In Quality</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Outfit:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/article.css" />
+  <meta name="description" content="If your UI is hard to automate, that's a design problem. A deep look at how product and design teams can build testability into every screen from day one." />
+  <meta name="keywords" content="designing for testability, testable UI, data-testid, test automation, accessible markup, ARIA selectors, QA engineering" />
+  <meta name="author" content="Sudarsh" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://builtinquality.dev/articles/02-designing-for-testability.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Built In Quality" />
+  <meta property="og:title" content="Designing for Testability — What Engineers Get Wrong" />
+  <meta property="og:description" content="If your UI is hard to automate, that's a design problem. A deep look at how product and design teams can build testability into every screen from day one." />
+  <meta property="og:url" content="https://builtinquality.dev/articles/02-designing-for-testability.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Designing for Testability — What Engineers Get Wrong" />
+  <meta name="twitter:description" content="If your UI is hard to automate, that's a design problem. A deep look at how product and design teams can build testability into every screen from day one." />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Designing for Testability — What Engineers Get Wrong",
+    "description": "If your UI is hard to automate, that's a design problem. A deep look at how product and design teams can build testability into every screen from day one.",
+    "datePublished": "2025-02-14",
+    "url": "https://builtinquality.dev/articles/02-designing-for-testability.html",
+    "mainEntityOfPage": "https://builtinquality.dev/articles/02-designing-for-testability.html",
+    "author": { "@type": "Person", "name": "Sudarsh", "url": "https://builtinquality.dev/#about" },
+    "publisher": { "@type": "Organization", "name": "Built In Quality", "url": "https://builtinquality.dev" }
+  }
+  </script>
+</head>
+<body>
+<nav>
+  <a class="logo" href="../index.html">Built<span>In</span>Quality<span>.dev</span></a>
+  <a class="nav-back" href="../index.html">← Back to all articles</a>
+</nav>
+
+<div class="article-hero">
+  <span class="article-tag tag-quality">Design Quality</span>
+  <h1>Designing for Testability — What Engineers Get Wrong</h1>
+  <div class="article-meta">
+    <div class="meta-author"><div class="meta-avatar">S</div><div><div class="meta-name">Sudarsh</div><div class="meta-role">QA Engineering Manager</div></div></div>
+    <span class="meta-sep">·</span><span class="meta-date">Feb 14, 2025</span>
+    <span class="meta-sep">·</span><span class="meta-read">6 min read</span>
+  </div>
+</div>
+
+<div class="article-body">
+
+  <p>There is a conversation I have had dozens of times in my career. A developer shows me a new feature and asks me to write automation for it. I open the browser, inspect the elements, and find a wall of dynamically generated class names that change on every build, deeply nested divs with no semantic meaning, and buttons with no accessible labels. The UI works — but it was built with zero consideration for how it would ever be tested.</p>
+
+  <p>This is not a QA problem. It is a design and engineering problem. <strong>Testability is a design quality attribute</strong>, and it belongs in the same conversation as performance, accessibility, and security.</p>
+
+  <h2>What Is Testability, Really?</h2>
+  <p>Testability is the degree to which a system supports the effort required to test it. A highly testable system makes it easy to set up test states, observe outcomes, and isolate components. A low-testability system requires testers to fight the system just to exercise it.</p>
+  <p>Poor testability shows up as:</p>
+  <ul>
+    <li>UI elements with no stable selectors (no IDs, no data-testid attributes)</li>
+    <li>Business logic buried inside UI components with no way to unit test it independently</li>
+    <li>Hard-coded dependencies (real payment gateways, live third-party APIs) that cannot be replaced in test environments</li>
+    <li>No way to seed test data without going through the entire UI flow</li>
+    <li>Time-dependent behaviour that makes tests flaky and unreliable</li>
+  </ul>
+
+  <h2>The Five Principles of Testable Design</h2>
+
+  <h3>1. Use Stable, Semantic Test Identifiers</h3>
+  <p>The single most impactful thing a frontend team can do for test automation is to add <code>data-testid</code> attributes to interactive elements. This gives automation engineers a stable, purpose-built hook that will not change when CSS class names are refactored or component libraries are upgraded.</p>
+
+  <div class="code-block">
+    <div class="code-header"><div class="dot d1"></div><div class="dot d2"></div><div class="dot d3"></div> login-form.tsx</div>
+    <pre><span class="cm">// ❌ Fragile — class names change with styling</span>
+&lt;button className="btn-primary mt-4 rounded-lg"&gt;Login&lt;/button&gt;
+
+<span class="cm">// ✅ Stable — test ID survives refactors</span>
+&lt;button
+  className="btn-primary mt-4 rounded-lg"
+  <span class="str">data-testid="login-submit-btn"</span>
+&gt;
+  Login
+&lt;/button&gt;</pre>
+  </div>
+
+  <p>Establish a team convention: every interactive element that will be tested gets a <code>data-testid</code>. Make it part of your definition of done. Review it in code reviews. Enforce it with a lint rule if needed.</p>
+
+  <h3>2. Separate Business Logic from UI</h3>
+  <p>When business logic is embedded directly in React components or Vue templates, it becomes extremely difficult to unit test without rendering the entire component. Extracting logic into pure functions or service layers makes it independently testable — and often reveals design issues that would have remained hidden inside a component.</p>
+
+  <div class="code-block">
+    <div class="code-header"><div class="dot d1"></div><div class="dot d2"></div><div class="dot d3"></div> pricing.utils.ts</div>
+    <pre><span class="cm">// ✅ Pure function — easy to unit test with any input</span>
+<span class="kw">export function</span> <span class="fn">calculateDiscount</span>(price: <span class="kw">number</span>, userTier: <span class="str">'free'</span> | <span class="str">'pro'</span> | <span class="str">'enterprise'</span>): <span class="kw">number</span> {
+  <span class="kw">const</span> discounts = { free: <span class="num">0</span>, pro: <span class="num">0.1</span>, enterprise: <span class="num">0.25</span> };
+  <span class="kw">return</span> price * (<span class="num">1</span> - discounts[userTier]);
+}</pre>
+  </div>
+
+  <h3>3. Design Injectable Dependencies</h3>
+  <p>Any component that talks to an external system — a payment gateway, an email service, a third-party API — should accept that dependency as an injected parameter rather than importing it directly. This allows tests to swap real implementations for mock versions without patching global modules.</p>
+
+  <h3>4. Build Observable State</h3>
+  <p>Tests need to observe outcomes. If your application mutates state silently with no visible feedback in the DOM, tests cannot verify that actions worked. Ensure that state changes produce observable signals — loading spinners, success messages, error states, aria-live regions — that tests can reliably check.</p>
+
+  <h3>5. Provide Test Data APIs</h3>
+  <p>One of the most expensive parts of E2E testing is setup. If your only way to create test data is to click through 15 screens, your tests will be slow and brittle. Work with your backend team to provide API endpoints or seed scripts specifically for test setup. This is not a workaround — it is a design decision that pays dividends across your entire test suite.</p>
+
+  <div class="callout">
+    <strong>Rule of thumb:</strong> If it takes more than three lines of setup code to get an element into a testable state, it is a testability design problem — not a test code problem.
+  </div>
+
+  <h2>Making This a Team Standard</h2>
+  <p>Testability cannot be owned by QA alone. It has to be a shared standard agreed upon by the entire engineering team. Here is how to make that happen:</p>
+  <ul>
+    <li><strong>Add testability to your PR checklist.</strong> Does this change add or maintain data-testid attributes? Are new business logic functions independently testable? Is state observable?</li>
+    <li><strong>Include QA in design reviews.</strong> Before frontend components are built, have a QA engineer review the wireframes and flag testability concerns. A 10-minute conversation before development begins saves hours of automation work later.</li>
+    <li><strong>Create a testability style guide.</strong> Document your team's conventions for naming test IDs, structuring testable components, and managing test data. Make it as official as your coding style guide.</li>
+  </ul>
+
+  <div class="callout green">
+    <strong>The payoff:</strong> When testability is a first-class design concern, automation engineers can write faster, more reliable tests. Test suites become assets rather than liabilities — and the team ships with more confidence at every release.
+  </div>
+
+  <hr class="article-divider" />
+
+  <div class="key-takeaways">
+    <h3>// Key Takeaways</h3>
+    <ul>
+      <li>Testability is a design quality attribute — it belongs alongside performance and accessibility in design reviews.</li>
+      <li>Adding <code>data-testid</code> attributes to all interactive elements is the single highest-ROI testability practice.</li>
+      <li>Business logic should be extracted from UI components so it can be unit tested independently.</li>
+      <li>Test data APIs and seed scripts are not hacks — they are legitimate, valuable engineering tools.</li>
+      <li>QA engineers should be present in frontend design reviews, not just sprint demos.</li>
+    </ul>
+  </div>
+
+</div>
+<div class="article-nav">
+  <a href="01-quality-at-inception.html">← Previous: Quality at Inception</a>
+  <a href="03-cicd-pipeline.html">Next: CI/CD Pipeline →</a>
+</div>
+</body>
+</html>

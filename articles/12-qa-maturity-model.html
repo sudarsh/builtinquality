@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The QA Maturity Model — Built In Quality</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Outfit:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/article.css" />
+  <meta name="description" content="A practical framework for assessing your team's quality maturity — from ad-hoc manual testing to fully automated, AI-assisted continuous quality engineering." />
+  <meta name="keywords" content="QA maturity model, quality maturity levels, test maturity assessment, QA roadmap, quality engineering maturity, automated testing maturity" />
+  <meta name="author" content="Sudarsh" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://builtinquality.dev/articles/12-qa-maturity-model.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Built In Quality" />
+  <meta property="og:title" content="The QA Maturity Model — Where Does Your Team Stand?" />
+  <meta property="og:description" content="A practical framework for assessing your team's quality maturity — from ad-hoc manual testing to fully automated, AI-assisted continuous quality engineering." />
+  <meta property="og:url" content="https://builtinquality.dev/articles/12-qa-maturity-model.html" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The QA Maturity Model — Where Does Your Team Stand?" />
+  <meta name="twitter:description" content="A practical framework for assessing your team's quality maturity — from ad-hoc manual testing to fully automated, AI-assisted continuous quality engineering." />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "The QA Maturity Model — Where Does Your Team Stand?",
+    "description": "A practical framework for assessing your team's quality maturity — from ad-hoc manual testing to fully automated, AI-assisted continuous quality engineering.",
+    "datePublished": "2026-03-05",
+    "url": "https://builtinquality.dev/articles/12-qa-maturity-model.html",
+    "mainEntityOfPage": "https://builtinquality.dev/articles/12-qa-maturity-model.html",
+    "author": { "@type": "Person", "name": "Sudarsh", "url": "https://builtinquality.dev/#about" },
+    "publisher": { "@type": "Organization", "name": "Built In Quality", "url": "https://builtinquality.dev" }
+  }
+  </script>
+</head>
+<body>
+<nav>
+  <a class="logo" href="../index.html">Built<span>In</span>Quality<span>.dev</span></a>
+  <a class="nav-back" href="../index.html">← Back to all articles</a>
+</nav>
+<div class="article-hero">
+  <span class="article-tag tag-cicd">Strategy</span>
+  <h1>The QA Maturity Model — Where Does Your Team Stand?</h1>
+  <div class="article-meta">
+    <div class="meta-author"><div class="meta-avatar">S</div><div><div class="meta-name">Sudarsh</div><div class="meta-role">QA Engineering Manager</div></div></div>
+    <span class="meta-sep">·</span><span class="meta-date">Mar 05, 2026</span><span class="meta-sep">·</span><span class="meta-read">10 min read</span>
+  </div>
+</div>
+<div class="article-body">
+  <p>After 13 years in quality engineering, I have seen QA teams at every stage of maturity — from single manual testers doing regression on spreadsheets to fully automated, AI-assisted quality pipelines that deploy 20 times a day with zero human sign-off. The gap between these teams is not budget or headcount. It is strategy, culture, and a clear understanding of where to invest next.</p>
+  <p>This is the maturity model I use to assess QA teams and plan their evolution.</p>
+
+  <h2>Level 1 — Reactive Quality (Ad-hoc)</h2>
+  <p><strong>What it looks like:</strong> Testing happens after development, often under time pressure. There is no defined test process. Tests are manual, undocumented, and inconsistent. Bugs are found — and often re-found — because there is no regression safety net. Deployments are scary.</p>
+  <p><strong>Key indicators:</strong> No test documentation, all testing manual, same bugs recurring, no metrics, testing is a bottleneck before every release.</p>
+  <p><strong>Priority investment:</strong> Document critical test cases. Start tracking bug counts and sources. Introduce a basic regression checklist.</p>
+
+  <h2>Level 2 — Defined Quality (Structured)</h2>
+  <p><strong>What it looks like:</strong> Testing is planned and documented. Test cases exist in a test management tool. The team runs structured regression cycles. Some basic automation exists, but it is fragile and not integrated into the pipeline. Quality is still mostly a post-development activity.</p>
+  <p><strong>Key indicators:</strong> Test management tool in use, manual regression documented, some automation exists, basic metrics tracked.</p>
+  <p><strong>Priority investment:</strong> Establish a stable automation framework (Playwright + TypeScript). Integrate automation into CI. Define coverage targets.</p>
+
+  <h2>Level 3 — Managed Quality (Automated)</h2>
+  <p><strong>What it looks like:</strong> A solid automation framework exists and is integrated into CI/CD. Unit, integration, and E2E tests run automatically on every commit. Coverage is tracked and maintained. Quality gates exist in the pipeline. Deployments are gated on test results. The team spends more time on strategy than execution.</p>
+  <p><strong>Key indicators:</strong> Automation in CI, quality gates enforced, coverage metrics tracked, deployment frequency increasing, defect escape rate declining.</p>
+  <p><strong>Priority investment:</strong> Shift left — introduce Three Amigos, testability standards, and requirement quality reviews.</p>
+
+  <h2>Level 4 — Proactive Quality (Engineered)</h2>
+  <p><strong>What it looks like:</strong> Quality is embedded in every phase of the lifecycle. QA engineers participate in product inception, design reviews, and architecture discussions. Testability is a design requirement. The pipeline runs in under 15 minutes with full coverage. Performance and security testing are automated. Production monitoring provides continuous quality feedback.</p>
+  <p><strong>Key indicators:</strong> QA at inception, testability in design standards, pipeline under 15 minutes, production monitoring active, quality metrics visible to leadership.</p>
+  <p><strong>Priority investment:</strong> AI tooling adoption, shift-right monitoring, and knowledge sharing across the engineering organisation.</p>
+
+  <h2>Level 5 — Optimised Quality (Autonomous)</h2>
+  <p><strong>What it looks like:</strong> Quality is a cultural value, not a process. AI tools generate and maintain tests. Self-healing selectors reduce maintenance overhead. Production monitoring feeds automatically into test coverage. Deployment frequency is high, defect escape rate is near zero, and the team's quality investment continuously compounds. QA engineers focus almost entirely on strategy, tooling evolution, and quality architecture.</p>
+  <p><strong>Key indicators:</strong> AI-assisted testing in use, self-healing automation, production quality feedback loops active, team focuses on strategy not execution.</p>
+
+  <div class="callout purple">
+    <strong>Honest assessment:</strong> Most engineering teams I encounter are at Level 2 or Level 3. Reaching Level 4 is a meaningful achievement that requires sustained investment over 12–18 months. Level 5 is aspirational for most — but knowing it exists helps you plan the journey.
+  </div>
+
+  <h2>How to Use This Model</h2>
+  <p>Use this model as a conversation starter with your engineering leadership, not as a performance scorecard. The goal is not to judge where your team is — it is to create a shared understanding of where you are, where you want to go, and what investment that journey requires.</p>
+  <p>Run a simple assessment with your team: for each level, list three specific evidence points that would confirm you are operating at that level. Then honestly evaluate which level matches your current reality. The gap between your current level and your next level is your quality roadmap.</p>
+
+  <div class="callout green">
+    <strong>Final thought:</strong> The teams that reach Level 4 and 5 are not the ones with the biggest QA budgets. They are the ones where engineering leadership genuinely believes quality is a strategic advantage — and invests accordingly.
+  </div>
+
+  <hr class="article-divider" />
+  <div class="key-takeaways">
+    <h3>// Key Takeaways</h3>
+    <ul>
+      <li>The five levels: Reactive → Defined → Managed → Proactive → Optimised.</li>
+      <li>Most teams are at Level 2 or 3. Reaching Level 4 requires 12–18 months of sustained investment.</li>
+      <li>Use the model as a conversation tool with leadership, not as a performance scorecard.</li>
+      <li>The gap between your current level and the next is your quality roadmap.</li>
+      <li>Teams that reach Level 4–5 have engineering leaders who treat quality as a strategic advantage.</li>
+    </ul>
+  </div>
+</div>
+<div class="article-nav">
+  <a href="11-shift-right-quality.html">← Previous: Shift-Right Quality</a>
+  <a href="../index.html">← Back to All Articles</a>
+</div>
+</body>
+</html>

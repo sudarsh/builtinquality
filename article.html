@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Article — Built In Quality</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Outfit:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/nav.css" />
+  <link rel="stylesheet" href="css/article.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="logo" style="text-decoration:none;">Built<span>In</span>Quality<span class="dim">.dev</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html#articles">Articles</a></li>
+      <li><a href="index.html#philosophy">Philosophy</a></li>
+      <li><a href="index.html#stack">Stack</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main class="article-page" id="article-root"></main>
+
+  <footer>
+    <div class="footer-logo">BuiltInQuality.dev</div>
+    <div class="footer-tagline">Quality isn't a phase. It's engineered into everything.</div>
+    <div class="footer-copy">© 2025 Sudarsh · All rights reserved</div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked@9/marked.min.js"></script>
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const id     = params.get('id');
+      const root   = document.getElementById('article-root');
+
+      const article = articles.find(a => a.num === id);
+
+      if (!article) {
+        root.innerHTML = `
+          <div class="article-not-found">
+            <h2>Article not found</h2>
+            <p>The article you're looking for doesn't exist.</p>
+            <a href="index.html" class="article-back">← Back to articles</a>
+          </div>`;
+        return;
+      }
+
+      document.title = article.title + ' — Built In Quality';
+
+      root.innerHTML = `
+        <a href="index.html#articles" class="article-back">← All Articles</a>
+
+        <header class="article-header">
+          <div class="article-header-meta">
+            <span class="article-tag tag-${article.tag}">${article.tagLabel}</span>
+            <span class="article-date">${article.date}</span>
+          </div>
+          <h1>${article.title}</h1>
+          <span class="article-read">${article.read}</span>
+        </header>
+
+        <div class="article-divider"></div>
+
+        <div class="article-body" id="article-body"></div>
+
+        <div class="article-footer">
+          <div class="article-author">
+            <div class="article-avatar">S</div>
+            <div>
+              <div class="article-author-name">Sudarsh</div>
+              <div class="article-author-role">QA Engineering Manager · 13+ yrs</div>
+            </div>
+          </div>
+          <a href="index.html#articles" class="article-back" style="margin-bottom:0">← All Articles</a>
+        </div>
+      `;
+
+      document.getElementById('article-body').innerHTML = marked.parse(article.body || '_Content coming soon._');
+    })();
+  </script>
+</body>
+</html>
