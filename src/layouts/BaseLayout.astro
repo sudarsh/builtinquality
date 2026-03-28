@@ -1,0 +1,85 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  ogUrl?: string;
+  jsonLd?: object;
+}
+
+const {
+  title,
+  description = 'Qualiteye is a quality engineering blog by Sudarsh, QA Consultant. Deep dives into Playwright automation, CI/CD quality gates, AI-assisted testing, shift-left quality, and building quality-first engineering cultures.',
+  canonical = 'https://qualiteye.com/',
+  ogTitle,
+  ogDescription,
+  ogImage = 'https://qualiteye.com/assets/hero.jpeg',
+  ogUrl,
+  jsonLd,
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/assets/qualiteye-icon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="author" content="Sudarsh" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href={canonical} />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Qualiteye" />
+  <meta property="og:title" content={ogTitle ?? title} />
+  <meta property="og:description" content={ogDescription ?? description} />
+  <meta property="og:url" content={ogUrl ?? canonical} />
+  <meta property="og:image" content={ogImage} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={ogTitle ?? title} />
+  <meta name="twitter:description" content={ogDescription ?? description} />
+  <meta name="twitter:image" content={ogImage} />
+
+  {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Outfit:wght@300;400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <slot name="head" />
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="logo" style="text-decoration:none;">Built<span>In</span>Quality</a>
+    <slot name="nav-right">
+      <ul class="nav-links">
+        <li><a href="/#articles">Articles</a></li>
+        <li><a href="/#philosophy">Philosophy</a></li>
+        <li><a href="/#stack">Stack</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#contact">Contact</a></li>
+        <li><a href="/profile">Profile</a></li>
+      </ul>
+    </slot>
+  </nav>
+
+  <slot />
+
+  <footer>
+    <div class="footer-logo">BuiltInQuality.dev</div>
+    <div class="footer-tagline">Quality isn't a phase. It's engineered into everything.</div>
+    <div class="footer-copy">© 2026 Sudarsh M. Sathianathan</div>
+  </footer>
+
+</body>
+</html>
+
+<style is:global>
+  @import '../styles/base.css';
+  @import '../styles/nav.css';
+</style>

@@ -1,0 +1,80 @@
+---
+import { marked } from 'marked';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { articles } from '../../data/articles';
+
+export function getStaticPaths() {
+  return articles.map(a => ({
+    params: { id: a.num },
+    props: { article: a },
+  }));
+}
+
+const { article } = Astro.props;
+const { num, tag, tagLabel, date, title, read, body } = article;
+
+const idx = articles.findIndex(a => a.num === num);
+const prev = idx > 0 ? articles[idx - 1] : null;
+const next = idx < articles.length - 1 ? articles[idx + 1] : null;
+
+const htmlBody = marked.parse(body);
+
+const canonical = `https://qualiteye.com/articles/${num}`;
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": title,
+  "author": {
+    "@type": "Person",
+    "name": "Sudarsh",
+    "url": "https://qualiteye.com/#about"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Qualiteye",
+    "url": "https://qualiteye.com"
+  },
+  "url": canonical,
+  "datePublished": date
+};
+---
+
+<BaseLayout
+  title={`${title} — Qualiteye`}
+  description={article.excerpt}
+  canonical={canonical}
+  ogTitle={title}
+  ogDescription={article.excerpt}
+  ogUrl={canonical}
+  jsonLd={jsonLd}
+>
+  <fragment slot="nav-right">
+    <a href="/#articles" class="nav-back">← All Articles</a>
+  </fragment>
+
+  <div class="article-hero">
+    <span class={`article-tag tag-${tag}`}>{tagLabel}</span>
+    <h1>{title}</h1>
+    <div class="article-meta">
+      <span class="meta-date">{date}</span>
+      <span class="meta-sep">·</span>
+      <span class="meta-read">{read}</span>
+    </div>
+  </div>
+
+  <hr class="article-divider" style="max-width:800px;margin:0 auto;" />
+
+  <div class="article-body" set:html={htmlBody} />
+
+  <nav class="article-nav">
+    {prev
+      ? <a href={`/articles/${prev.num}`}>← {prev.title}</a>
+      : <span></span>
+    }
+    {next && <a href={`/articles/${next.num}`}>{next.title} →</a>}
+  </nav>
+</BaseLayout>
+
+<style>
+  @import '../../styles/article.css';
+</style>
