@@ -50,6 +50,7 @@ const jsonLd = {
   jsonLd={jsonLd}
 >
   <div class="article-hero">
+    <a href="/" class="article-back">← All Articles</a>
     <span class={`article-tag tag-${tag}`}>{tagLabel}</span>
     <h1>{title}</h1>
     <div class="article-meta">
@@ -62,14 +63,6 @@ const jsonLd = {
   <hr class="article-divider" style="max-width:800px;margin:0 auto;" />
 
   <div class="article-body" set:html={htmlBody} />
-
-  <nav class="article-nav">
-    {prev
-      ? <a href={`/articles/${prev.num}`}>← {prev.title}</a>
-      : <span></span>
-    }
-    {next && <a href={`/articles/${next.num}`}>{next.title} →</a>}
-  </nav>
 </BaseLayout>
 
 <style>
