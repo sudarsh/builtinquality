@@ -40,6 +40,7 @@ const jsonLd = {
 ---
 
 <BaseLayout
+  showNav={false}
   title={`${title} — Qualiteye`}
   description={article.excerpt}
   canonical={canonical}
@@ -48,10 +49,6 @@ const jsonLd = {
   ogUrl={canonical}
   jsonLd={jsonLd}
 >
-  <fragment slot="nav-right">
-    <a href="/#articles" class="nav-back">← All Articles</a>
-  </fragment>
-
   <div class="article-hero">
     <span class={`article-tag tag-${tag}`}>{tagLabel}</span>
     <h1>{title}</h1>
