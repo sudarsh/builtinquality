@@ -136,6 +136,7 @@ nav {
 }
 
 .meta-sep  { color: var(--border2); }
+.meta-author, .meta-author + .meta-sep { display: none; }
 .meta-date { font-family: var(--mono); font-size: 0.65rem; color: var(--text3); }
 .meta-read { font-family: var(--mono); font-size: 0.65rem; color: var(--text3); }
 
