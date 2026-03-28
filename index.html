@@ -208,13 +208,13 @@
       <div class="section-label">Get in Touch</div>
       <div class="section-title">Let's Talk Quality</div>
       <p class="section-desc">Consulting, speaking, or just a conversation about building better engineering cultures — I'm open to it all.</p>
-      <form class="contact-form" onsubmit="return false;">
+      <form class="contact-form" action="https://formspree.io/f/mjgpgraq" method="POST">
         <div class="form-row">
-          <div class="form-group"><label class="form-label">Name</label><input class="form-input" type="text" placeholder="Your name" /></div>
-          <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" placeholder="your@email.com" /></div>
+          <div class="form-group"><label class="form-label">Name</label><input class="form-input" type="text" name="name" placeholder="Your name" required /></div>
+          <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" name="email" placeholder="your@email.com" required /></div>
         </div>
-        <div class="form-group"><label class="form-label">Subject</label><input class="form-input" type="text" placeholder="What's on your mind?" /></div>
-        <div class="form-group"><label class="form-label">Message</label><textarea class="form-textarea" placeholder="Tell me more..."></textarea></div>
+        <div class="form-group"><label class="form-label">Subject</label><input class="form-input" type="text" name="subject" placeholder="What's on your mind?" /></div>
+        <div class="form-group"><label class="form-label">Message</label><textarea class="form-textarea" name="message" placeholder="Tell me more..." required></textarea></div>
         <button class="btn-submit" type="submit">Send Message →</button>
       </form>
     </div>

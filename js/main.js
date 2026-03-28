@@ -54,28 +54,9 @@ function initScrollSpy() {
   sections.forEach(s => observer.observe(s));
 }
 
-// ── CONTACT FORM ──
-function initContactForm() {
-  const form = document.querySelector('.contact-form');
-  if (!form) return;
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const btn = form.querySelector('.btn-submit');
-    btn.textContent = 'Message Sent ✓';
-    btn.style.background = 'var(--accent3)';
-    setTimeout(() => {
-      btn.textContent = 'Send Message →';
-      btn.style.background = '';
-      form.reset();
-    }, 3000);
-  });
-}
-
 // ── INIT ──
 document.addEventListener('DOMContentLoaded', () => {
   renderArticles();
   renderStack();
   initScrollSpy();
-  initContactForm();
 });
