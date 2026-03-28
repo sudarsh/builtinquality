@@ -14,4 +14,4 @@ Allow: /
 User-agent: GoogleOther
 Allow: /
 
-Sitemap: https://builtinquality.dev/sitemap.xml
+Sitemap: https://qualiteye.com/sitemap.xml
