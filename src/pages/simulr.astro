@@ -33,9 +33,10 @@ const jsonLd = {
       <li><a href="#problem">Problem</a></li>
       <li><a href="#how">How it works</a></li>
       <li><a href="#features">Features</a></li>
+      <li><a href="#technology">Technology</a></li>
       <li><a href="#usecases">Use cases</a></li>
     </ul>
-    <a href="mailto:sudarsh@qualiteye.com" class="sbtn sbtn-primary snav-cta">Get in touch</a>
+    <a href="#cta" class="sbtn sbtn-primary snav-cta">Get early access</a>
     <button class="snav-burger" id="snav-burger" aria-label="Open menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -44,8 +45,9 @@ const jsonLd = {
     <a href="#problem">Problem</a>
     <a href="#how">How it works</a>
     <a href="#features">Features</a>
+    <a href="#technology">Technology</a>
     <a href="#usecases">Use cases</a>
-    <a href="mailto:sudarsh@qualiteye.com" class="sbtn sbtn-primary">Get in touch</a>
+    <a href="#cta" class="sbtn sbtn-primary">Get early access</a>
   </div>
 </header>
 
@@ -442,6 +444,47 @@ const jsonLd = {
   </div>
 </section>
 
+<!-- ─── TECHNOLOGY ─── -->
+<section class="s-section s-tech-strip" id="technology" aria-label="Technology">
+  <div class="sw">
+    <div class="s-tech-inner reveal">
+      <div class="s-eyebrow">Under the hood</div>
+      <h2>Built on large language models and real browser automation.</h2>
+      <p class="s-lead">Simulr doesn't simulate clicks in a sandbox. It drives a real browser — reading the live DOM, navigating like a person would, and reasoning through every decision using large language models. The result is behaviour you can trust, not a scripted path.</p>
+      <div class="s-tech-grid">
+        <div class="s-tech-item">
+          <div class="s-tech-icon">🧠</div>
+          <div>
+            <div class="s-tech-name">Large Language Models</div>
+            <div class="s-tech-desc">Power persona reasoning, decision-making, and natural-language report generation.</div>
+          </div>
+        </div>
+        <div class="s-tech-item">
+          <div class="s-tech-icon">🌐</div>
+          <div>
+            <div class="s-tech-name">Live Browser Automation</div>
+            <div class="s-tech-desc">Each Sim navigates a real browser — no sandbox, no mocked DOM, no scripted paths.</div>
+          </div>
+        </div>
+        <div class="s-tech-item">
+          <div class="s-tech-icon">📄</div>
+          <div>
+            <div class="s-tech-name">Document Intelligence</div>
+            <div class="s-tech-desc">Parses your onboarding PDFs and cross-references every claim against the live product.</div>
+          </div>
+        </div>
+        <div class="s-tech-item">
+          <div class="s-tech-icon">⚡</div>
+          <div>
+            <div class="s-tech-name">Real-Time Streaming</div>
+            <div class="s-tech-desc">Persona reasoning streams live as the Sim navigates — no waiting for a final report.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ─── USE CASES ─── -->
 <section class="s-section s-bg-alt" id="usecases" aria-label="Who Simulr is for">
   <div class="sw">
@@ -490,6 +533,30 @@ const jsonLd = {
   </div>
 </section>
 
+<!-- ─── EARLY ACCESS CTA ─── -->
+<section class="s-cta" id="cta" aria-label="Request early access">
+  <div class="sw">
+    <div class="s-cta-inner reveal">
+      <div class="s-eyebrow s-eyebrow-center">Early Access</div>
+      <h2>Be first to run a Sim on your product.</h2>
+      <p>Simulr is in private early access. Leave your email and we'll reach out to set up your first Sim run — free.</p>
+      <form class="s-cta-form" action="https://formspree.io/f/mjgpgraq" method="POST">
+        <input type="hidden" name="_subject" value="Simulr Early Access Request" />
+        <input type="hidden" name="type" value="early-access" />
+        <input
+          class="s-cta-input"
+          type="email"
+          name="email"
+          placeholder="you@company.com"
+          required
+          aria-label="Work email address"
+        />
+        <button class="sbtn sbtn-white" type="submit">Request access</button>
+      </form>
+      <p class="s-cta-note">No spam. No sales pitch. Just a Sim run on your product.</p>
+    </div>
+  </div>
+</section>
 
 </main>
 
@@ -520,6 +587,53 @@ const jsonLd = {
 </div><!-- #simulr-page -->
 
 <style>
+/* ── TECHNOLOGY SECTION ── */
+.s-tech-strip {
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+}
+.s-tech-inner h2 { margin-bottom: 0.75rem; }
+.s-tech-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-top: 2.5rem;
+}
+.s-tech-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 1.25rem 1.5rem;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+.s-tech-item:hover {
+  box-shadow: 0 4px 16px rgba(83,74,183,0.08);
+  border-color: rgba(83,74,183,0.25);
+}
+.s-tech-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+.s-tech-name {
+  font-family: var(--ff-head);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+}
+.s-tech-desc {
+  font-size: 0.875rem;
+  color: var(--ink-muted);
+  line-height: 1.55;
+}
+@media (max-width: 768px) {
+  .s-tech-grid { grid-template-columns: 1fr; }
+}
+
 /* ── neutralise any global nav{} rules leaking in ── */
 #simulr-page nav,
 #simulr-page ul.snav-links {

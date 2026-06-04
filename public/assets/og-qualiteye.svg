@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <!-- White background -->
+  <rect width="1200" height="630" fill="#FFFFFF"/>
+
+  <!-- Subtle grid -->
+  <defs>
+    <pattern id="grid" x="0" y="0" width="52" height="52" patternUnits="userSpaceOnUse">
+      <path d="M52 0L0 0 0 52" fill="none" stroke="#6C47FF" stroke-width="0.5" stroke-opacity="0.06"/>
+    </pattern>
+    <radialGradient id="orb1" cx="85%" cy="15%" r="45%">
+      <stop offset="0%" stop-color="#6C47FF" stop-opacity="0.09"/>
+      <stop offset="100%" stop-color="#6C47FF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orb2" cx="10%" cy="90%" r="35%">
+      <stop offset="0%" stop-color="#6C47FF" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#6C47FF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  <rect width="1200" height="630" fill="url(#orb1)"/>
+  <rect width="1200" height="630" fill="url(#orb2)"/>
+
+  <!-- Bottom accent line -->
+  <rect x="0" y="624" width="1200" height="6" fill="#6C47FF"/>
+
+  <!-- Left column -->
+
+  <!-- Company badge -->
+  <rect x="64" y="72" width="136" height="30" rx="4" fill="#6C47FF" fill-opacity="0.08" stroke="#6C47FF" stroke-opacity="0.22" stroke-width="1"/>
+  <text x="80" y="92" font-family="'Courier New', Courier, monospace" font-size="12" fill="#6C47FF" letter-spacing="2.5" font-weight="600">QUALITEYE</text>
+  <circle cx="214" cy="87" r="4" fill="#6C47FF"/>
+
+  <!-- Headline -->
+  <text x="64" y="220" font-family="'Arial Black', 'Arial Bold', Arial, sans-serif" font-size="68" font-weight="900" fill="#0A0A0A" letter-spacing="-2">AI tools for</text>
+  <text x="64" y="300" font-family="'Arial Black', 'Arial Bold', Arial, sans-serif" font-size="68" font-weight="900" fill="#6C47FF" letter-spacing="-2">product teams.</text>
+
+  <!-- Subtext -->
+  <text x="64" y="360" font-family="Arial, sans-serif" font-size="21" fill="#3D3D3D">We make Simulr — AI personas that test your product</text>
+  <text x="64" y="388" font-family="Arial, sans-serif" font-size="21" fill="#3D3D3D">before real users do.</text>
+
+  <!-- Domain -->
+  <text x="64" y="548" font-family="'Courier New', Courier, monospace" font-size="17" fill="#888888" letter-spacing="0.5">qualiteye.com</text>
+
+  <!-- Right column: product card -->
+  <rect x="730" y="130" width="406" height="298" rx="16" fill="#F7F7F7" stroke="#6C47FF" stroke-opacity="0.28" stroke-width="1.5"/>
+
+  <!-- Card top gradient accent -->
+  <defs>
+    <linearGradient id="cardTop" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#4F33CC"/>
+      <stop offset="100%" stop-color="#6C47FF"/>
+    </linearGradient>
+  </defs>
+  <rect x="730" y="130" width="406" height="4" rx="2" fill="url(#cardTop)"/>
+
+  <!-- Flagship label -->
+  <rect x="752" y="158" width="150" height="24" rx="3" fill="#6C47FF" fill-opacity="0.08" stroke="#6C47FF" stroke-opacity="0.2" stroke-width="1"/>
+  <text x="764" y="174" font-family="'Courier New', Courier, monospace" font-size="10" fill="#6C47FF" letter-spacing="2" font-weight="600">FLAGSHIP PRODUCT</text>
+
+  <!-- Simulr name -->
+  <text x="752" y="237" font-family="'Arial Black', 'Arial Bold', Arial, sans-serif" font-size="44" font-weight="900" fill="#0A0A0A" letter-spacing="-1.5">Simulr</text>
+
+  <!-- Short description -->
+  <text x="752" y="272" font-family="Arial, sans-serif" font-size="15" fill="#3D3D3D">AI personas that find UX issues</text>
+  <text x="752" y="293" font-family="Arial, sans-serif" font-size="15" fill="#3D3D3D">before your users do.</text>
+
+  <!-- Feature tags -->
+  <rect x="752" y="336" width="94" height="24" rx="3" fill="#6C47FF" fill-opacity="0.07" stroke="#6C47FF" stroke-opacity="0.2" stroke-width="1"/>
+  <text x="763" y="352" font-family="'Courier New', Courier, monospace" font-size="10" fill="#6C47FF" letter-spacing="1.5" font-weight="600">AI TESTING</text>
+
+  <rect x="856" y="336" width="106" height="24" rx="3" fill="#6C47FF" fill-opacity="0.07" stroke="#6C47FF" stroke-opacity="0.2" stroke-width="1"/>
+  <text x="867" y="352" font-family="'Courier New', Courier, monospace" font-size="10" fill="#6C47FF" letter-spacing="1.5" font-weight="600">UX RESEARCH</rect>
+
+  <rect x="972" y="336" width="120" height="24" rx="3" fill="#6C47FF" fill-opacity="0.07" stroke="#6C47FF" stroke-opacity="0.2" stroke-width="1"/>
+  <text x="983" y="352" font-family="'Courier New', Courier, monospace" font-size="10" fill="#6C47FF" letter-spacing="1.5" font-weight="600">DOC TESTING</text>
+
+  <!-- Early access pill -->
+  <rect x="752" y="390" width="114" height="22" rx="11" fill="#6C47FF"/>
+  <text x="765" y="405" font-family="'Courier New', Courier, monospace" font-size="10" fill="#FFFFFF" letter-spacing="1.5" font-weight="700">EARLY ACCESS</text>
+</svg>

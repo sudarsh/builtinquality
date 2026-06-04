@@ -11,13 +11,13 @@
 }
 
 .article-card {
-  background: var(--bg2);
+  background: var(--bg);
   padding: 2rem;
   cursor: pointer;
   transition: background 0.2s;
   position: relative;
 }
-.article-card:hover { background: var(--bg3); }
+.article-card:hover { background: var(--bg2); }
 
 .card-meta {
   display: flex; align-items: center; justify-content: space-between;
@@ -29,11 +29,11 @@
   padding: 0.2rem 0.55rem; border-radius: 2px;
   text-transform: uppercase; letter-spacing: 0.1em;
 }
-.tag-cicd      { background: rgba(245,158,11,0.1);  color: var(--accent4); border: 1px solid rgba(245,158,11,0.2); }
-.tag-playwright{ background: rgba(0,212,255,0.08);  color: var(--accent);  border: 1px solid rgba(0,212,255,0.18); }
-.tag-ai        { background: rgba(124,58,237,0.1);  color: #a78bfa;        border: 1px solid rgba(124,58,237,0.25); }
-.tag-quality   { background: rgba(16,185,129,0.08); color: var(--accent3); border: 1px solid rgba(16,185,129,0.2); }
-.tag-testing   { background: rgba(244,63,94,0.08);  color: #fb7185;        border: 1px solid rgba(244,63,94,0.2); }
+.tag-cicd       { background: rgba(245,158,11,0.08);  color: #B45309; border: 1px solid rgba(245,158,11,0.25); }
+.tag-playwright { background: rgba(108,71,255,0.07);  color: var(--accent);  border: 1px solid rgba(108,71,255,0.22); }
+.tag-ai         { background: rgba(79,51,204,0.07);   color: var(--accent2); border: 1px solid rgba(79,51,204,0.2); }
+.tag-quality    { background: rgba(16,185,129,0.07);  color: #059669; border: 1px solid rgba(16,185,129,0.2); }
+.tag-testing    { background: rgba(244,63,94,0.07);   color: #E11D48; border: 1px solid rgba(244,63,94,0.2); }
 
 .card-date  { font-family: var(--mono); font-size: 0.62rem; color: var(--text3); }
 .card-num   {
@@ -50,7 +50,7 @@
 }
 .article-card:hover .card-title { color: var(--accent); }
 
-.card-excerpt { font-size: 0.85rem; color: var(--text2); line-height: 1.6; font-weight: 300; }
+.card-excerpt { font-size: 0.85rem; color: var(--text2); line-height: 1.6; }
 
 .card-footer {
   display: flex; align-items: center; justify-content: space-between;

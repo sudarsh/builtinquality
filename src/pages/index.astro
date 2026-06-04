@@ -7,38 +7,39 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@graph": [
     {
-      "@type": "WebSite",
+      "@type": "Organization",
       "name": "Qualiteye",
       "url": "https://qualiteye.com",
-      "description": "Quality engineering blog covering Playwright, CI/CD, AI-assisted testing, shift-left quality, and engineering culture.",
+      "description": "Qualiteye is an AI product studio building tools for product teams. We make Simulr — AI user personas that test your product and documentation before real users do.",
+      "founder": { "@id": "https://qualiteye.com/#sudarsh" },
+      "foundingLocation": "Bengaluru, India"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "Simulr",
+      "url": "https://qualiteye.com/simulr",
+      "description": "AI personas that test your product like real users — surfacing UX issues and documentation gaps before a single real user sees them.",
+      "applicationCategory": "DeveloperApplication",
       "author": { "@id": "https://qualiteye.com/#sudarsh" }
     },
     {
       "@type": "Person",
       "@id": "https://qualiteye.com/#sudarsh",
-      "name": "Sudarsh",
-      "jobTitle": "QA Consultant",
-      "description": "QA Consultant building quality systems, automation frameworks, and quality-first engineering cultures.",
-      "url": "https://qualiteye.com/#about",
-      "knowsAbout": ["Quality Engineering","Test Automation","Playwright","TypeScript","CI/CD","GitHub Actions","AI-Assisted Testing","Shift-Left Testing","Engineering Culture","Allure Reporting","Performance Testing"]
-    },
-    {
-      "@type": "Blog",
-      "name": "Qualiteye",
-      "url": "https://qualiteye.com",
-      "description": "Practical guides and engineering perspectives on quality — written for teams who take quality seriously.",
-      "author": { "@id": "https://qualiteye.com/#sudarsh" }
+      "name": "Sudarsh M. Sathianathan",
+      "jobTitle": "Founder, Qualiteye",
+      "description": "Founder of Qualiteye, building AI tools for product teams with 13+ years in quality engineering.",
+      "url": "https://qualiteye.com/#about"
     }
   ]
 };
 ---
 
 <BaseLayout
-  title="Qualiteye — Quality Engineering by Sudarsh M. Sathianathan"
-  description="Qualiteye is a quality engineering blog by Sudarsh, QA Consultant. Deep dives into Playwright automation, CI/CD quality gates, AI-assisted testing, shift-left quality, and building quality-first engineering cultures."
+  title="Qualiteye — AI Tools for Product Teams"
+  description="Qualiteye is an AI product studio building tools for product teams. We make Simulr — AI user personas that test your product and documentation before real users do."
   canonical="https://qualiteye.com/"
-  ogTitle="Qualiteye — Quality Engineering by Sudarsh M. Sathianathan"
-  ogDescription="Deep dives into Playwright automation, CI/CD quality gates, AI-assisted testing, and building quality-first engineering cultures. Written for QA engineers, engineering managers, and CTOs."
+  ogTitle="Qualiteye — AI Tools for Product Teams"
+  ogDescription="Qualiteye builds Simulr — AI user personas that navigate your product like real people, surfacing UX failures and documentation gaps in minutes, not weeks."
   ogUrl="https://qualiteye.com/"
   jsonLd={jsonLd}
 >
@@ -51,50 +52,90 @@ const jsonLd = {
     <div class="orb2"></div>
     <div class="hero-layout">
       <div class="hero-inner">
-        <div class="hero-badge"><div class="pulse"></div>Quality Engineering</div>
-        <h1>Quality breaks at the <span class="hl">requirements meeting</span>,<br>not in prod. That's where I <span class="hl2">work</span>.</h1>
+        <div class="hero-badge"><div class="pulse"></div>AI Product Studio · Bengaluru, India</div>
+        <h1>We build tools that find problems <span class="hl">before your users do.</span></h1>
         <p class="hero-sub">
-          I've spent 13 years in the gap between what gets built and what was meant. Vague requirements, rushed designs, untested edge cases — I find them before they cost you.
+          Qualiteye builds AI-powered software for product teams. Our first product, Simulr, replaces expensive user research with AI personas that navigate your product like real people — surfacing UX failures and documentation gaps in minutes.
         </p>
+        <div class="hero-ctas">
+          <a href="/simulr" class="hero-cta-primary">Explore Simulr →</a>
+          <a href="/#contact" class="hero-cta-secondary">Get in touch</a>
+        </div>
         <div class="hero-meta">
           <div class="hero-author">
             <div class="avatar">S</div>
             <div class="author-info">
-              <span class="author-name">Sudarsh</span>
-              <span class="author-role">QA Consultant</span>
+              <span class="author-name">Sudarsh M. Sathianathan</span>
+              <span class="author-role">Founder · Qualiteye</span>
             </div>
           </div>
           <div class="divider-v"></div>
-          <div class="hero-stat"><span class="stat-num">12+</span><span class="stat-label">Articles</span></div>
+          <div class="hero-stat"><span class="stat-num">1</span><span class="stat-label">Product</span></div>
           <div class="divider-v"></div>
-          <div class="hero-stat"><span class="stat-num">13</span><span class="stat-label">Years XP</span></div>
+          <div class="hero-stat"><span class="stat-num">13+</span><span class="stat-label">Yrs in QA</span></div>
           <div class="divider-v"></div>
-          <div class="hero-stat"><span class="stat-num">1</span><span class="stat-label">Mission</span></div>
+          <div class="hero-stat"><span class="stat-num">Early</span><span class="stat-label">Access</span></div>
         </div>
       </div>
       <div class="hero-image">
-        <img src="/assets/hero.jpeg" alt="Sudarsh — QA Consultant" />
+        <div class="hero-product-card">
+          <div class="hpc-eyebrow">Flagship Product</div>
+          <img src="/assets/simulr-logo-black.svg" alt="Simulr" class="hpc-logo" />
+          <p class="hpc-desc">AI personas that test your product like real users — surfacing UX issues and documentation gaps before a single real user sees them.</p>
+          <div class="hpc-tags">
+            <span>AI Testing</span>
+            <span>UX Research</span>
+            <span>Doc Validation</span>
+          </div>
+          <a href="/simulr" class="hpc-link">View product →</a>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- LIFECYCLE STRIP -->
+  <!-- SIMULR CAPABILITIES STRIP -->
   <div class="lifecycle">
     <div class="lifecycle-inner">
-      <div class="lc-step"><div class="lc-icon">💡</div><div class="lc-label">Inception</div><div class="lc-sub">Quality in requirements</div><div class="lc-badge">Shift Left</div></div>
-      <div class="lc-step"><div class="lc-icon">🎨</div><div class="lc-label">Design</div><div class="lc-sub">Testability by design</div><div class="lc-badge">Built In</div></div>
-      <div class="lc-step"><div class="lc-icon">⚙️</div><div class="lc-label">Development</div><div class="lc-sub">TDD · code reviews</div><div class="lc-badge">Embedded</div></div>
-      <div class="lc-step"><div class="lc-icon">🧪</div><div class="lc-label">Testing</div><div class="lc-sub">Automation · coverage</div><div class="lc-badge">Automated</div></div>
-      <div class="lc-step"><div class="lc-icon">🚀</div><div class="lc-label">CI / CD</div><div class="lc-sub">Pipeline quality gates</div><div class="lc-badge">Gated</div></div>
-      <div class="lc-step"><div class="lc-icon">📡</div><div class="lc-label">Production</div><div class="lc-sub">Monitoring · observability</div><div class="lc-badge">Continuous</div></div>
+      <div class="lc-step"><div class="lc-icon">🤖</div><div class="lc-label">AI Personas</div><div class="lc-sub">Simulate real user behavior</div><div class="lc-badge">Simulr</div></div>
+      <div class="lc-step"><div class="lc-icon">🎯</div><div class="lc-label">Mission Testing</div><div class="lc-sub">Goal-oriented navigation</div><div class="lc-badge">Simulr</div></div>
+      <div class="lc-step"><div class="lc-icon">📄</div><div class="lc-label">Doc Validation</div><div class="lc-sub">Stale content detection</div><div class="lc-badge">Simulr</div></div>
+      <div class="lc-step"><div class="lc-icon">📊</div><div class="lc-label">Sim Reports</div><div class="lc-sub">Plain-English output</div><div class="lc-badge">Simulr</div></div>
+      <div class="lc-step"><div class="lc-icon">🔥</div><div class="lc-label">Click Heatmaps</div><div class="lc-sub">Visual attention data</div><div class="lc-badge">Simulr</div></div>
+      <div class="lc-step"><div class="lc-icon">🧠</div><div class="lc-label">Sim Imprint</div><div class="lc-sub">Real user fingerprint</div><div class="lc-badge">Phase 3</div></div>
     </div>
   </div>
 
+  <!-- PRODUCTS -->
+  <section class="section products-section" id="products">
+    <div class="section-label">What We Build</div>
+    <div class="section-title">Our Products</div>
+    <p class="section-desc">We build AI-powered tools that give product teams the insights they need to ship with confidence.</p>
+    <div class="products-grid">
+      <div class="product-card product-card-featured">
+        <div class="pc-header">
+          <img src="/assets/simulr-logo-black.svg" alt="Simulr" class="pc-logo" />
+          <div class="pc-badges">
+            <span class="pc-status">Early Access</span>
+            <span class="pc-tag">AI · UX Testing</span>
+          </div>
+        </div>
+        <p class="pc-desc">AI personas that test your product like real users — surfacing UX issues, confusion points, and documentation gaps in minutes, not weeks. No user recruiting. No waiting on analytics.</p>
+        <div class="pc-features">
+          <div class="pc-feat"><span class="pc-feat-icon">🎭</span>Build AI personas with customisable behavioral profiles</div>
+          <div class="pc-feat"><span class="pc-feat-icon">🎯</span>Set plain-English goal missions and watch Sims navigate live</div>
+          <div class="pc-feat"><span class="pc-feat-icon">📄</span>Detect stale onboarding documentation automatically</div>
+          <div class="pc-feat"><span class="pc-feat-icon">📋</span>Get shareable plain-English reports, not test logs</div>
+        </div>
+        <a href="/simulr" class="pc-cta">Explore Simulr →</a>
+      </div>
+    </div>
+  </section>
+
   <!-- ARTICLES -->
   <section class="section" id="articles">
-    <div class="section-label">Knowledge Base</div>
-    <div class="section-title">Articles & Deep Dives</div>
-    <p class="section-desc">Practical guides and engineering perspectives — written for teams who take quality seriously.</p>
+    <div class="section-label">From the Blog</div>
+    <div class="section-title">Latest Articles</div>
+    <p class="section-desc">Engineering perspectives on quality, automation, and building better products.</p>
     <div class="articles-grid">
       {articles.map(a => (
         <a class="article-card" href={`/articles/${a.num}`} style="text-decoration:none;color:inherit;display:block;">
@@ -116,9 +157,9 @@ const jsonLd = {
 
   <!-- PHILOSOPHY -->
   <section class="philosophy" id="philosophy">
-    <div class="section-label">Core Belief</div>
-    <div class="section-title">The Qualiteye Manifesto</div>
-    <p class="section-desc">Quality is not a department. It's not a phase. It's a shared responsibility — engineered into every decision, every line of code, every deployment.</p>
+    <div class="section-label">Our Principles</div>
+    <div class="section-title">The Qualiteye Philosophy</div>
+    <p class="section-desc">Quality is not a department. It's not a phase. It's a shared responsibility — engineered into every decision, every line of code, every deployment. It's why we built Qualiteye.</p>
     <div class="philosophy-grid">
       <div class="philosophy-manifesto">
         <div class="manifesto-label">// manifesto.md</div>
@@ -170,13 +211,13 @@ const jsonLd = {
 
   <!-- ABOUT -->
   <section class="section about-section" id="about">
-    <div class="section-label">The Author</div>
-    <div class="section-title">About Sudarsh</div>
+    <div class="section-label">The Founder</div>
+    <div class="section-title">About Qualiteye</div>
     <div class="about-grid">
       <div class="about-card">
         <img src="/assets/sudarsh.jpeg" alt="Sudarsh" class="about-avatar" style="object-fit:cover;" />
         <div class="about-name">Sudarsh</div>
-        <div class="about-title-role">QA Consultant</div>
+        <div class="about-title-role">Founder · Qualiteye</div>
         <p class="about-location">Bengaluru, India</p>
         <div class="about-social">
           <a href="https://www.linkedin.com/in/sudarshms/" target="_blank" rel="noopener noreferrer" class="about-social-link" title="LinkedIn">
@@ -188,24 +229,24 @@ const jsonLd = {
         </div>
         <div class="about-stats">
           <div class="astat"><div class="astat-num">13+</div><div class="astat-label">Years in QA</div></div>
-          <div class="astat"><div class="astat-num">12</div><div class="astat-label">Team Built</div></div>
-          <div class="astat"><div class="astat-num">50+</div><div class="astat-label">Products Shipped</div></div>
-          <div class="astat"><div class="astat-num">∞</div><div class="astat-label">Bugs Caught</div></div>
+          <div class="astat"><div class="astat-num">2026</div><div class="astat-label">Founded</div></div>
+          <div class="astat"><div class="astat-num">1</div><div class="astat-label">Live Product</div></div>
+          <div class="astat"><div class="astat-num">BLR</div><div class="astat-label">India</div></div>
         </div>
       </div>
       <div>
         <div class="about-bio">
-          <p>I've spent 13 years in QA, most of it building things other people inherit — automation frameworks, pipeline gates, the standards a team runs on years after you've moved on.</p>
-          <p><strong>Quality is a leadership decision.</strong> The bugs that reach production aren't random — they reflect what the team was allowed to skip and what the manager chose to prioritise. I work with engineering leaders to change those defaults before they become incidents.</p>
-          <p>If you're an engineering manager or CTO tired of treating QA as a final checkpoint, the writing and work here are for you.</p>
+          <p>Qualiteye was founded by Sudarsh M. Sathianathan, a quality engineer with 13+ years building software that other people inherit — frameworks, pipeline gates, and the standards teams rely on long after you've moved on.</p>
+          <p><strong>Simulr is our first product</strong> — built from a simple observation: product teams ship blind. You test if the app works. Nobody tests if real users understand it. Simulr fixes that by running AI personas through your product before a single real user sees it.</p>
+          <p>Qualiteye is based in Bengaluru, India. We're currently in early access and looking for product teams to build with.</p>
         </div>
         <div class="expertise-list">
-          <div class="exp-item"><div class="exp-dot"></div>QA Strategy & Team Building from scratch</div>
+          <div class="exp-item"><div class="exp-dot"></div>AI user persona simulation (Simulr)</div>
+          <div class="exp-item"><div class="exp-dot"></div>UX testing & documentation gap detection</div>
+          <div class="exp-item"><div class="exp-dot"></div>QA strategy & engineering consulting</div>
           <div class="exp-item"><div class="exp-dot"></div>End-to-end automation with Playwright & TypeScript</div>
           <div class="exp-item"><div class="exp-dot"></div>CI/CD pipeline design with quality gates</div>
-          <div class="exp-item"><div class="exp-dot"></div>AI-assisted testing with Claude Code</div>
           <div class="exp-item"><div class="exp-dot"></div>Shift-left quality & testability architecture</div>
-          <div class="exp-item"><div class="exp-dot"></div>Production observability & shift-right quality</div>
         </div>
       </div>
     </div>
@@ -215,8 +256,8 @@ const jsonLd = {
   <section class="contact-section" id="contact">
     <div class="contact-inner">
       <div class="section-label">Get in Touch</div>
-      <div class="section-title">Let's Talk Quality</div>
-      <p class="section-desc">Consulting, speaking, or just a conversation about building better engineering cultures — I'm open to it all.</p>
+      <div class="section-title">Work With Qualiteye</div>
+      <p class="section-desc">Early access to Simulr, consulting engagements, partnerships, or a conversation about quality engineering — we're open to it all.</p>
       <form class="contact-form" action="https://formspree.io/f/mjgpgraq" method="POST">
         <div class="form-row">
           <div class="form-group"><label class="form-label">Name</label><input class="form-input" type="text" name="name" placeholder="Your name" required /></div>
@@ -235,4 +276,196 @@ const jsonLd = {
   @import '../styles/articles.css';
   @import '../styles/philosophy.css';
   @import '../styles/stack.css';
+
+  /* ── HERO CTAS ── */
+  .hero-ctas {
+    margin-top: 2rem;
+    margin-bottom: 2.5rem;
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    animation: fadeUp 0.5s 0.3s ease both;
+  }
+  .hero-cta-primary {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.7rem 1.5rem;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  }
+  .hero-cta-primary:hover {
+    background: var(--accent2);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(108,71,255,0.3);
+  }
+  .hero-cta-secondary {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.7rem 1.5rem;
+    background: transparent;
+    color: var(--text2);
+    text-decoration: none;
+    border-radius: 6px;
+    border: 1px solid var(--border2);
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
+  }
+  .hero-cta-secondary:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: rgba(108,71,255,0.04);
+  }
+
+  /* ── HERO PRODUCT CARD ── */
+  .hero-product-card {
+    background: var(--bg);
+    border: 1px solid rgba(108,71,255,0.25);
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 4px 24px rgba(108,71,255,0.08), 0 1px 4px rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .hpc-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: 1px solid rgba(108,71,255,0.22);
+    background: rgba(108,71,255,0.06);
+    padding: 0.2rem 0.65rem;
+    border-radius: 3px;
+    display: inline-block;
+    width: fit-content;
+  }
+  .hpc-logo { height: 28px; width: auto; }
+  .hpc-desc {
+    color: var(--text2);
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+  .hpc-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+  .hpc-tags span {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--accent);
+    background: rgba(108,71,255,0.06);
+    border: 1px solid rgba(108,71,255,0.2);
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .hpc-link {
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+    transition: color 0.2s;
+    width: fit-content;
+  }
+  .hpc-link:hover { color: var(--accent2); }
+
+  /* ── PRODUCTS SECTION ── */
+  .products-section { background: var(--bg2); }
+  .products-grid { margin-top: 2.5rem; }
+  .product-card {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 2.5rem;
+    max-width: 700px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .product-card-featured {
+    border-color: rgba(108,71,255,0.3);
+    box-shadow: 0 4px 24px rgba(108,71,255,0.08), 0 1px 4px rgba(0,0,0,0.04);
+  }
+  .pc-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+  }
+  .pc-logo { height: 26px; width: auto; }
+  .pc-badges { display: flex; gap: 8px; align-items: center; }
+  .pc-status {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--accent);
+    background: rgba(108,71,255,0.07);
+    border: 1px solid rgba(108,71,255,0.22);
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .pc-tag {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--text3);
+    background: var(--bg2);
+    border: 1px solid var(--border2);
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .pc-desc {
+    color: var(--text2);
+    font-size: 1rem;
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+  .pc-features {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin-bottom: 2rem;
+    padding: 1.25rem;
+    background: var(--bg2);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+  }
+  .pc-feat {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    font-size: 0.9rem;
+    color: var(--text2);
+    line-height: 1.5;
+  }
+  .pc-feat-icon { flex-shrink: 0; font-size: 1rem; margin-top: 0.05rem; }
+  .pc-cta {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.7rem 1.5rem;
+    background: var(--accent);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  }
+  .pc-cta:hover {
+    background: var(--accent2);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(108,71,255,0.3);
+  }
 </style>

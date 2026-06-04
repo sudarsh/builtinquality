@@ -13,11 +13,11 @@ interface Props {
 
 const {
   title,
-  description = 'Qualiteye is a quality engineering blog by Sudarsh, QA Consultant. Deep dives into Playwright automation, CI/CD quality gates, AI-assisted testing, shift-left quality, and building quality-first engineering cultures.',
+  description = 'Qualiteye is an AI product studio building tools for product teams. We make Simulr — AI user personas that test your product and documentation before real users do.',
   canonical = 'https://qualiteye.com/',
   ogTitle,
   ogDescription,
-  ogImage = 'https://qualiteye.com/assets/hero.jpeg',
+  ogImage = 'https://qualiteye.com/assets/og-qualiteye.svg',
   ogUrl,
   jsonLd,
   showNav = true,
@@ -58,15 +58,13 @@ const {
 
   {showNav && (
     <nav>
-      <a href="/" class="logo" style="text-decoration:none;">BuiltInQuality</a>
+      <a href="/" class="logo" style="text-decoration:none;">Qualiteye</a>
       <slot name="nav-right">
         <ul class="nav-links">
-          <li><a href="/#articles">Articles</a></li>
-          <li><a href="/#philosophy">Philosophy</a></li>
-          <li><a href="/#stack">Stack</a></li>
+          <li><a href="/#products">Products</a></li>
+          <li><a href="/#articles">Blog</a></li>
           <li><a href="/#about">About</a></li>
           <li><a href="/#contact">Contact</a></li>
-          <li><a href="/profile">Profile</a></li>
           <li><a href="/simulr" class="nav-simulr">Simulr ↗</a></li>
         </ul>
       </slot>
@@ -76,9 +74,9 @@ const {
   <slot />
 
   <footer>
-    <div class="footer-logo">BuiltInQuality.dev</div>
-    <div class="footer-tagline">Quality isn't a phase. It's engineered into everything.</div>
-    <div class="footer-copy">© 2026 Sudarsh M. Sathianathan</div>
+    <div class="footer-logo">Qualiteye</div>
+    <div class="footer-tagline">Building AI tools for product teams.</div>
+    <div class="footer-copy">© 2026 Qualiteye · <a href="/privacy" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor;opacity:0.6;">Privacy</a></div>
   </footer>
 
 </body>

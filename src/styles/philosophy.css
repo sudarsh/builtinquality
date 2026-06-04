@@ -14,12 +14,13 @@
 }
 
 .philosophy-manifesto {
-  background: var(--bg3);
-  border: 1px solid var(--border2);
+  background: var(--bg);
+  border: 1px solid var(--border);
   border-radius: 10px;
   padding: 2.5rem;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
 }
 .philosophy-manifesto::before {
   content: '';
@@ -46,45 +47,49 @@
 .pillars { display: flex; flex-direction: column; gap: 1rem; }
 
 .pillar {
-  background: var(--bg3); border: 1px solid var(--border);
+  background: var(--bg); border: 1px solid var(--border);
   border-radius: 8px; padding: 1.4rem;
   display: flex; gap: 1.2rem; align-items: flex-start;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s;
 }
-.pillar:hover { border-color: var(--border2); }
+.pillar:hover {
+  border-color: var(--accent);
+  box-shadow: 0 2px 16px rgba(108,71,255,0.08);
+}
 
 .pillar-icon {
   width: 36px; height: 36px; border-radius: 6px; flex-shrink: 0;
   display: flex; align-items: center; justify-content: center; font-size: 0.9rem;
 }
-.pi-cyan   { background: rgba(0,212,255,0.1);   border: 1px solid rgba(0,212,255,0.2); }
-.pi-purple { background: rgba(124,58,237,0.1);  border: 1px solid rgba(124,58,237,0.25); }
-.pi-green  { background: rgba(16,185,129,0.1);  border: 1px solid rgba(16,185,129,0.2); }
-.pi-amber  { background: rgba(245,158,11,0.1);  border: 1px solid rgba(245,158,11,0.2); }
+.pi-cyan   { background: rgba(108,71,255,0.07); border: 1px solid rgba(108,71,255,0.2); }
+.pi-purple { background: rgba(79,51,204,0.07);  border: 1px solid rgba(79,51,204,0.2); }
+.pi-green  { background: rgba(16,185,129,0.08); border: 1px solid rgba(16,185,129,0.2); }
+.pi-amber  { background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.2); }
 
 .pillar-title { font-family: var(--display); font-size: 0.95rem; font-weight: 700; color: var(--text); margin-bottom: 0.3rem; }
-.pillar-desc  { font-size: 0.8rem; color: var(--text2); line-height: 1.55; font-weight: 300; }
+.pillar-desc  { font-size: 0.8rem; color: var(--text2); line-height: 1.55; }
 
-/* terminal */
+/* terminal — kept dark for contrast against the light page */
 .terminal {
-  background: var(--bg3); border: 1px solid var(--border2);
-  border-radius: 8px; overflow: hidden; margin-top: 3rem;
+  background: #0F1117; border: 1px solid #2D3748;
+  border-radius: 10px; overflow: hidden; margin-top: 3rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
 }
 .terminal-bar {
-  background: var(--bg4); padding: 0.6rem 1rem;
+  background: #1A202C; padding: 0.6rem 1rem;
   display: flex; align-items: center; gap: 0.5rem;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid #2D3748;
 }
 .t-dot   { width: 10px; height: 10px; border-radius: 50%; }
 .td1 { background: #ff5f56; } .td2 { background: #ffbd2e; } .td3 { background: #27c93f; }
-.t-title { font-family: var(--mono); font-size: 0.65rem; color: var(--text3); margin-left: 0.5rem; }
+.t-title { font-family: var(--mono); font-size: 0.65rem; color: #718096; margin-left: 0.5rem; }
 
 .terminal-body { padding: 1.5rem; }
 .t-line    { font-family: var(--mono); font-size: 0.78rem; line-height: 2; }
-.t-prompt  { color: var(--accent3); }
-.t-cmd     { color: var(--text2); }
-.t-comment { color: var(--text3); }
-.t-out     { color: var(--accent); }
+.t-prompt  { color: #10b981; }
+.t-cmd     { color: #E2E8F0; }
+.t-comment { color: #4A5568; }
+.t-out     { color: #68D391; }
 .t-out2    { color: #a78bfa; }
 
 @media (max-width: 900px) {
