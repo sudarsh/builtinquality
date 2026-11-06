@@ -1,8 +1,17 @@
+import { frontmatter as agentDriven, rawContent as agentDrivenBody } from './articles/agent-driven-continuous-deployment.md';
+
 export interface Article {
   num: string;
+  slug: string;
   tag: string;
   tagLabel: string;
+  /** Human-readable date for display. */
   date: string;
+  /** ISO date (YYYY-MM-DD) for JSON-LD, RSS and sorting. */
+  datePublished: string;
+  /** Overrides the title in the page <title> element. */
+  seoTitle?: string;
+  keywords?: string;
   title: string;
   excerpt: string;
   read: string;
@@ -11,7 +20,7 @@ export interface Article {
 
 export const articles: Article[] = [
   {
-    num: '01', tag: 'quality', tagLabel: 'Quality Culture', date: 'Jan 08, 2025',
+    num: '01', slug: 'why-quality-must-start-at-the-product-inception-phase', tag: 'quality', tagLabel: 'Quality Culture', date: 'Jan 08, 2025', datePublished: '2025-01-08',
     title: 'Why Quality Must Start at the Product Inception Phase',
     excerpt: "Most teams bolt quality on at the end. The highest-performing engineering orgs bake it into the very first conversation. Here's how to make that shift.",
     read: '8 min read',
@@ -61,7 +70,7 @@ Start the conversation at inception. Everything downstream gets easier.
 `
   },
   {
-    num: '02', tag: 'quality', tagLabel: 'Design Quality', date: 'Feb 14, 2025',
+    num: '02', slug: 'designing-for-testability-what-engineers-get-wrong', tag: 'quality', tagLabel: 'Design Quality', date: 'Feb 14, 2025', datePublished: '2025-02-14',
     title: 'Designing for Testability — What Engineers Get Wrong',
     excerpt: "If your UI is hard to automate, that's a design problem. A deep look at how product and design teams can build testability into every screen from day one.",
     read: '6 min read',
@@ -110,7 +119,7 @@ Add a QA voice to your design reviews. It pays off immediately.
 `
   },
   {
-    num: '03', tag: 'cicd', tagLabel: 'CI / CD', date: 'Mar 22, 2025',
+    num: '03', slug: 'building-a-quality-first-ci-cd-pipeline-from-zero-to-production-gates', tag: 'cicd', tagLabel: 'CI / CD', date: 'Mar 22, 2025', datePublished: '2025-03-22',
     title: 'Building a Quality-First CI/CD Pipeline — From Zero to Production Gates',
     excerpt: 'A complete walkthrough of setting up a CI/CD pipeline with quality gates at every stage — lint, unit, integration, E2E, and performance checks before every deploy.',
     read: '12 min read',
@@ -175,7 +184,7 @@ A quality-first pipeline is the most reliable QA engineer you'll ever hire. It w
 `
   },
   {
-    num: '04', tag: 'playwright', tagLabel: 'Playwright', date: 'May 05, 2025',
+    num: '04', slug: 'playwright-from-scratch-a-complete-setup-guide-with-typescript-and-pom', tag: 'playwright', tagLabel: 'Playwright', date: 'May 05, 2025', datePublished: '2025-05-05',
     title: 'Playwright from Scratch — A Complete Setup Guide with TypeScript and POM',
     excerpt: 'Step-by-step guide to setting up a production-ready Playwright framework using TypeScript, Page Object Model, fixtures, and custom reporters.',
     read: '15 min read',
@@ -273,7 +282,7 @@ This structure scales. As your test suite grows, the POM pattern keeps selectors
 `
   },
   {
-    num: '05', tag: 'ai', tagLabel: 'AI + Testing', date: 'Jun 18, 2025',
+    num: '05', slug: 'playwright-claude-ai-writing-smarter-tests-with-ai-assistance', tag: 'ai', tagLabel: 'AI + Testing', date: 'Jun 18, 2025', datePublished: '2025-06-18',
     title: 'Playwright + Claude AI — Writing Smarter Tests with AI Assistance',
     excerpt: 'How I use Claude Code to generate, review, and refactor Playwright tests — cutting test authoring time by 60% without sacrificing quality or coverage.',
     read: '10 min read',
@@ -319,7 +328,7 @@ The best use of AI in testing is as an accelerator for the parts that don't requ
 `
   },
   {
-    num: '06', tag: 'testing', tagLabel: 'Snapshot Testing', date: 'Aug 02, 2025',
+    num: '06', slug: 'implementing-snapshot-testing-in-playwright-catch-visual-regressions-early', tag: 'testing', tagLabel: 'Snapshot Testing', date: 'Aug 02, 2025', datePublished: '2025-08-02',
     title: 'Implementing Snapshot Testing in Playwright — Catch Visual Regressions Early',
     excerpt: 'A practical guide to visual snapshot testing with Playwright — how to set baselines, handle dynamic content, and integrate visual checks into your CI pipeline.',
     read: '9 min read',
@@ -379,7 +388,7 @@ Visual regression testing catches a category of bugs that no amount of functiona
 `
   },
   {
-    num: '07', tag: 'playwright', tagLabel: 'Playwright', date: 'Sep 15, 2025',
+    num: '07', slug: 'adding-allure-reporting-to-playwright-beautiful-actionable-test-reports', tag: 'playwright', tagLabel: 'Playwright', date: 'Sep 15, 2025', datePublished: '2025-09-15',
     title: 'Adding Allure Reporting to Playwright — Beautiful, Actionable Test Reports',
     excerpt: 'How to set up Allure Reporter with Playwright for rich, interactive test reports — with screenshots, traces, step-level breakdowns, and CI integration.',
     read: '7 min read',
@@ -456,7 +465,7 @@ Allure transforms test results from a pass/fail summary into an actionable diagn
 `
   },
   {
-    num: '08', tag: 'cicd', tagLabel: 'Pipeline', date: 'Oct 28, 2025',
+    num: '08', slug: 'quality-gates-in-github-actions-blocking-bad-code-before-it-ships', tag: 'cicd', tagLabel: 'Pipeline', date: 'Oct 28, 2025', datePublished: '2025-10-28',
     title: 'Quality Gates in GitHub Actions — Blocking Bad Code Before It Ships',
     excerpt: 'How to configure GitHub Actions workflows with strict quality gates — fail fast on test failures, coverage thresholds, and performance budgets.',
     read: '11 min read',
@@ -543,7 +552,7 @@ GitHub Actions is powerful enough to enforce whatever quality bar your team sets
 `
   },
   {
-    num: '09', tag: 'quality', tagLabel: 'Engineering Culture', date: 'Nov 20, 2025',
+    num: '09', slug: 'how-to-build-a-quality-first-engineering-culture-as-a-qa-manager', tag: 'quality', tagLabel: 'Engineering Culture', date: 'Nov 20, 2025', datePublished: '2025-11-20',
     title: 'How to Build a Quality-First Engineering Culture as a QA Manager',
     excerpt: "Quality culture doesn't come from tools — it comes from how your team thinks. A management playbook for embedding quality mindset across product, dev, and QA.",
     read: '13 min read',
@@ -593,7 +602,7 @@ Culture change is slow. But it's also durable. The team that has internalised qu
 `
   },
   {
-    num: '10', tag: 'ai', tagLabel: 'AI + QA', date: 'Dec 10, 2025',
+    num: '10', slug: 'how-ai-is-reshaping-the-qa-engineer-role-in-2025-and-beyond', tag: 'ai', tagLabel: 'AI + QA', date: 'Dec 10, 2025', datePublished: '2025-12-10',
     title: 'How AI is Reshaping the QA Engineer Role in 2025 and Beyond',
     excerpt: "AI won't replace QA engineers — but it will change everything they do. A clear-eyed look at what shifts, what stays, and how to future-proof your QA career.",
     read: '9 min read',
@@ -646,7 +655,7 @@ AI raises the floor of what a QA engineer can produce and raises the ceiling of 
 `
   },
   {
-    num: '11', tag: 'testing', tagLabel: 'Observability', date: 'Jan 22, 2026',
+    num: '11', slug: 'shift-right-quality-monitoring-production-as-a-qa-strategy', tag: 'testing', tagLabel: 'Observability', date: 'Jan 22, 2026', datePublished: '2026-01-22',
     title: 'Shift-Right Quality — Monitoring Production as a QA Strategy',
     excerpt: "Testing before deployment isn't enough. Here's how to extend your quality strategy into production with monitoring, alerting, and real-user feedback loops.",
     read: '8 min read',
@@ -700,7 +709,7 @@ Shift-right quality treats production as a continuous testing environment. Combi
 `
   },
   {
-    num: '12', tag: 'cicd', tagLabel: 'Strategy', date: 'Mar 05, 2026',
+    num: '12', slug: 'the-qa-maturity-model-where-does-your-team-stand', tag: 'cicd', tagLabel: 'Strategy', date: 'Mar 05, 2026', datePublished: '2026-03-05',
     title: 'The QA Maturity Model — Where Does Your Team Stand?',
     excerpt: 'A practical framework for assessing your team\'s quality maturity — from ad-hoc manual testing to fully automated, AI-assisted continuous quality engineering.',
     read: '10 min read',
@@ -754,5 +763,18 @@ Then, focus on the **one or two practices** that would move you to the next leve
 
 Knowing where you are is more useful than aspirational visions of where you want to be. Assess honestly, pick the next rung, and execute. That's how quality maturity is built — one deliberate practice at a time.
 `
-  }
+  },
+  {
+    num: '13', slug: agentDriven.slug, tag: agentDriven.tag, tagLabel: agentDriven.tagLabel, date: 'Nov 05, 2026', datePublished: '2026-11-05',
+    title: agentDriven.title,
+    seoTitle: agentDriven.seoTitle,
+    keywords: agentDriven.keywords,
+    excerpt: agentDriven.description,
+    read: agentDriven.read,
+    body: agentDrivenBody(),
+  },
 ];
+
+export const articlesNewestFirst = [...articles].sort((a, b) => b.datePublished.localeCompare(a.datePublished));
+
+export const featuredArticle = articles.find(a => a.slug === 'agent-driven-continuous-deployment')!;

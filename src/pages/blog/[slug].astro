@@ -1,0 +1,96 @@
+---
+import { marked } from 'marked';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { articles, articlesNewestFirst } from '../../data/articles';
+import { person, PERSON_ID } from '../../data/site';
+
+export function getStaticPaths() {
+  return articles.map(a => ({
+    params: { slug: a.slug },
+    props: { article: a },
+  }));
+}
+
+const { article } = Astro.props;
+const { slug, tag, tagLabel, date, datePublished, title, seoTitle, keywords, excerpt, read, body } = article;
+
+const htmlBody = marked.parse(body);
+
+// Same-tag articles first, topped up with the newest so there are always at least two.
+const others = articlesNewestFirst.filter(a => a.slug !== slug);
+const sameTag = others.filter(a => a.tag === tag).slice(0, 3);
+const related = sameTag.length >= 2
+  ? sameTag
+  : [...sameTag, ...others.filter(a => a.tag !== tag)].slice(0, 2);
+
+// FAQ entries are "**Question?**" followed by the answer, under a "## FAQ" heading.
+const faqSection = body.split(/^## FAQ\s*$/m)[1] ?? '';
+const faqs = [...faqSection.matchAll(/^\*\*(.+?)\*\*\n(.+)$/gm)].map(([, name, text]) => ({
+  '@type': 'Question',
+  name,
+  acceptedAnswer: { '@type': 'Answer', text },
+}));
+
+const canonical = `https://qualiteye.com/blog/${slug}`;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    person,
+    {
+      '@type': 'BlogPosting',
+      headline: title,
+      description: excerpt,
+      url: canonical,
+      mainEntityOfPage: canonical,
+      datePublished,
+      ...(keywords ? { keywords } : {}),
+      author: { '@id': PERSON_ID },
+      publisher: { '@id': PERSON_ID },
+    },
+    ...(faqs.length ? [{ '@type': 'FAQPage', url: canonical, mainEntity: faqs }] : []),
+  ],
+};
+---
+
+<BaseLayout
+  title={`${seoTitle ?? title} — Sudarsh M. Sathianathan`}
+  description={excerpt}
+  canonical={canonical}
+  ogTitle={seoTitle ?? title}
+  ogDescription={excerpt}
+  ogUrl={canonical}
+  ogType="article"
+  keywords={keywords}
+  jsonLd={jsonLd}
+>
+  <article class="animate">
+    <a class="link post-back" href="/blog">← Back to blog</a>
+    <div class="post-meta">{date} · {read} · {tagLabel}</div>
+    <h1 class="post-title">{title}</h1>
+    <div class="post-body" set:html={htmlBody} />
+  </article>
+
+  <aside class="author-box" aria-label="About the author">
+    <img src="/assets/sudarsh.jpeg" alt="Sudarsh M. Sathianathan" class="author-photo" />
+    <div>
+      <div class="author-name">Sudarsh M. Sathianathan</div>
+      <p class="author-bio">QA Engineering Manager with 13+ years in quality engineering. Twice the first QA hire.</p>
+      <div class="author-links">
+        <a class="link" href="/work">My work</a>
+        <a class="link" href="/resume">Resume</a>
+      </div>
+    </div>
+  </aside>
+
+  <section class="related" aria-label="Related posts">
+    <div class="section-head"><h2>Related posts</h2></div>
+    <ul class="cards">
+      {related.map(a => <ArticleCard article={a} />)}
+    </ul>
+  </section>
+</BaseLayout>
+
+<style is:global>
+  @import '../../styles/article.css';
+</style>

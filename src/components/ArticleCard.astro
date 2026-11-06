@@ -1,0 +1,18 @@
+---
+import type { Article } from '../data/articles';
+import ArrowCard from './ArrowCard.astro';
+
+interface Props {
+  article: Article;
+  showMeta?: boolean;
+}
+
+const { article: a, showMeta = false } = Astro.props;
+---
+
+<ArrowCard
+  href={`/blog/${a.slug}`}
+  title={a.title}
+  desc={a.excerpt}
+  meta={showMeta ? `${a.date} · ${a.read}` : undefined}
+/>

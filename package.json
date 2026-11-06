@@ -8,8 +8,9 @@
     "preview": "astro preview"
   },
   "dependencies": {
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "3.2.1",
     "astro": "^4.16.0",
-    "@astrojs/sitemap": "^3.2.0",
     "marked": "^9.1.6"
   }
 }

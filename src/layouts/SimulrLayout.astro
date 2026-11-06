@@ -1,0 +1,88 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  canonical?: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  ogUrl?: string;
+  jsonLd?: object;
+  showNav?: boolean;
+}
+
+const {
+  title,
+  description = 'Qualiteye is an AI product studio building tools for product teams. We make Simulr — AI user personas that test your product and documentation before real users do.',
+  canonical = 'https://qualiteye.com/',
+  ogTitle,
+  ogDescription,
+  ogImage = 'https://qualiteye.com/assets/og-qualiteye.svg',
+  ogUrl,
+  jsonLd,
+  showNav = true,
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/assets/qualiteye-icon.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="author" content="Sudarsh" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href={canonical} />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Qualiteye" />
+  <meta property="og:title" content={ogTitle ?? title} />
+  <meta property="og:description" content={ogDescription ?? description} />
+  <meta property="og:url" content={ogUrl ?? canonical} />
+  <meta property="og:image" content={ogImage} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={ogTitle ?? title} />
+  <meta name="twitter:description" content={ogDescription ?? description} />
+  <meta name="twitter:image" content={ogImage} />
+
+  {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <slot name="head" />
+</head>
+<body>
+
+  {showNav && (
+    <nav>
+      <a href="/" class="logo" style="text-decoration:none;">Qualiteye</a>
+      <slot name="nav-right">
+        <ul class="nav-links">
+          <li><a href="/#products">Products</a></li>
+          <li><a href="/#articles">Blog</a></li>
+          <li><a href="/#about">About</a></li>
+          <li><a href="/#contact">Contact</a></li>
+          <li><a href="/simulr" class="nav-simulr">Simulr ↗</a></li>
+        </ul>
+      </slot>
+    </nav>
+  )}
+
+  <slot />
+
+  <footer>
+    <div class="footer-logo">Qualiteye</div>
+    <div class="footer-tagline">Building AI tools for product teams.</div>
+    <div class="footer-copy">© 2026 Qualiteye · <a href="/privacy" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor;opacity:0.6;">Privacy</a></div>
+  </footer>
+
+</body>
+</html>
+
+<style is:global>
+  @import '../styles/legacy/base.css';
+  @import '../styles/legacy/nav.css';
+</style>

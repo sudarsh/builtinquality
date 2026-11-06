@@ -7,36 +7,49 @@ interface Props {
   ogDescription?: string;
   ogImage?: string;
   ogUrl?: string;
+  ogType?: 'website' | 'article';
+  keywords?: string;
   jsonLd?: object;
   showNav?: boolean;
 }
 
 const {
   title,
-  description = 'Qualiteye is an AI product studio building tools for product teams. We make Simulr — AI user personas that test your product and documentation before real users do.',
+  description = 'Personal site of Sudarsh M. Sathianathan, a QA Engineering Manager who builds QA functions from scratch and works hands-on with AI testing.',
   canonical = 'https://qualiteye.com/',
   ogTitle,
   ogDescription,
-  ogImage = 'https://qualiteye.com/assets/og-qualiteye.svg',
+  ogImage = 'https://qualiteye.com/assets/og-qualiteye.png',
   ogUrl,
+  ogType = 'website',
+  keywords,
   jsonLd,
   showNav = true,
 } = Astro.props;
+
+const path = Astro.url.pathname.replace(/\/$/, '');
+const navLinks = [
+  { href: '/work', label: 'work' },
+  { href: '/blog', label: 'blog' },
+  { href: '/resume', label: 'resume' },
+];
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" id="top">
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/assets/qualiteye-icon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title}</title>
   <meta name="description" content={description} />
-  <meta name="author" content="Sudarsh" />
+  <meta name="author" content="Sudarsh M. Sathianathan" />
+  {keywords && <meta name="keywords" content={keywords} />}
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href={canonical} />
+  <link rel="alternate" type="application/rss+xml" title="Qualiteye: Sudarsh M. Sathianathan" href="/rss.xml" />
 
-  <meta property="og:type" content="website" />
+  <meta property="og:type" content={ogType} />
   <meta property="og:site_name" content="Qualiteye" />
   <meta property="og:title" content={ogTitle ?? title} />
   <meta property="og:description" content={ogDescription ?? description} />
@@ -50,39 +63,89 @@ const {
   {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <script is:inline>
+      // Apply the saved theme before first paint. Default is dark; "system" follows the OS.
+      (function () {
+        var t = 'dark';
+        try { t = localStorage.getItem('theme') || 'dark'; } catch (e) {}
+        var dark = t === 'dark' || (t === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.classList.toggle('dark', dark);
+        document.documentElement.dataset.theme = t;
+      })();
+    </script>
+  <meta name="theme-color" content="#1C1917" />
 
   <slot name="head" />
 </head>
 <body>
-
   {showNav && (
-    <nav>
-      <a href="/" class="logo" style="text-decoration:none;">Qualiteye</a>
-      <slot name="nav-right">
-        <ul class="nav-links">
-          <li><a href="/#products">Products</a></li>
-          <li><a href="/#articles">Blog</a></li>
-          <li><a href="/#about">About</a></li>
-          <li><a href="/#contact">Contact</a></li>
-          <li><a href="/simulr" class="nav-simulr">Simulr ↗</a></li>
-        </ul>
-      </slot>
-    </nav>
+    <header class="site-header">
+      <div class="container header-row">
+        <a href="/" class="site-name">Sudarsh M. Sathianathan</a>
+        <nav class="site-nav" aria-label="Main">
+          {navLinks.map((l, i) => (
+            <>
+              {i > 0 && <span aria-hidden="true">/</span>}
+              <a href={l.href} aria-current={path.startsWith(l.href) ? 'page' : undefined}>{l.label}</a>
+            </>
+          ))}
+        </nav>
+      </div>
+    </header>
   )}
 
-  <slot />
+  <main class="site-main">
+    <div class="container">
+      <slot />
+    </div>
+  </main>
 
-  <footer>
-    <div class="footer-logo">Qualiteye</div>
-    <div class="footer-tagline">Building AI tools for product teams.</div>
-    <div class="footer-copy">© 2026 Qualiteye · <a href="/privacy" style="color:inherit;text-decoration:none;border-bottom:1px solid currentColor;opacity:0.6;">Privacy</a></div>
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <span>© 2026 Sudarsh M. Sathianathan</span>
+      <div class="footer-right">
+        <span><a class="link" href="/rss.xml">rss</a> · <a class="link" href="/privacy">privacy</a> · <a class="link" href="#top">back to top ↑</a></span>
+        <div class="theme-buttons" role="group" aria-label="Colour theme">
+            <button type="button" data-theme-choice="light" aria-label="Light theme" title="Light">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+            </button>
+            <button type="button" data-theme-choice="dark" aria-label="Dark theme" title="Dark">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </button>
+            <button type="button" data-theme-choice="system" aria-label="System theme" title="System">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </button>
+          </div>
+      </div>
+    </div>
   </footer>
 
+  <script is:inline>
+      (function () {
+        var root = document.documentElement;
+        var media = window.matchMedia('(prefers-color-scheme: dark)');
+        var buttons = document.querySelectorAll('[data-theme-choice]');
+        function apply(t) {
+          root.classList.toggle('dark', t === 'dark' || (t === 'system' && media.matches));
+          root.dataset.theme = t;
+          buttons.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.themeChoice === t)); });
+        }
+        apply(root.dataset.theme || 'dark');
+        buttons.forEach(function (b) {
+          b.addEventListener('click', function () {
+            var t = b.dataset.themeChoice;
+            try { localStorage.setItem('theme', t); } catch (e) {}
+            apply(t);
+          });
+        });
+        media.addEventListener('change', function () { if (root.dataset.theme === 'system') apply('system'); });
+      })();
+    </script>
 </body>
 </html>
 
 <style is:global>
   @import '../styles/base.css';
-  @import '../styles/nav.css';
 </style>

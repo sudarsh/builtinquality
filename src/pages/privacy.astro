@@ -1,9 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { EMAIL } from '../data/site';
 ---
 <BaseLayout
   title="Privacy Policy — Qualiteye"
-  description="Qualiteye privacy policy. What data we collect, how we use it, and how to contact us."
+  description="Privacy policy for qualiteye.com: what data I collect, how I use it and how to contact me."
   canonical="https://qualiteye.com/privacy"
   ogTitle="Privacy Policy — Qualiteye"
   ogUrl="https://qualiteye.com/privacy"
@@ -13,48 +14,41 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <div class="privacy-inner">
     <div class="privacy-eyebrow">Legal</div>
     <h1>Privacy Policy</h1>
-    <p class="privacy-meta">Qualiteye · Last updated: June 2026</p>
+    <p class="privacy-meta">Qualiteye · Last updated: November 2026</p>
 
-    <p class="privacy-lead">Qualiteye is an AI product studio based in Bengaluru, India. This policy explains what personal data we collect through <strong>qualiteye.com</strong> and our product <strong>Simulr</strong>, how we use it, and your rights.</p>
+    <p class="privacy-lead"><strong>qualiteye.com</strong> is the personal site of Sudarsh M. Sathianathan, based in Bengaluru, India. This policy explains what personal data I collect through this site, how I use it, and your rights.</p>
 
     <hr />
 
-    <h2>1. Data we collect</h2>
-    <p>We collect only the data you voluntarily provide:</p>
-    <ul>
-      <li><strong>Email address</strong> — when you request early access to Simulr or submit the contact form.</li>
-      <li><strong>Name and message</strong> — when you submit the contact form (optional fields).</li>
-    </ul>
-    <p>We do not use tracking cookies, analytics scripts, or advertising pixels on this website.</p>
+    <h2>1. Data I collect</h2>
+    <p>I collect only the data you choose to send through the contact form: your name, email address, subject and message.</p>
+    <p>I don't use tracking cookies, analytics scripts or advertising pixels on this website.</p>
 
-    <h2>2. How we use your data</h2>
-    <ul>
-      <li>To respond to your inquiry or grant early access to Simulr.</li>
-      <li>To send product updates directly related to your request (no unsolicited marketing).</li>
-    </ul>
-    <p>We do not sell, rent, or share your personal data with third parties for their own purposes.</p>
+    <h2>2. How I use your data</h2>
+    <p>I use it to reply to your message. I don't send marketing email.</p>
+    <p>I don't sell, rent or share your personal data with third parties for their own purposes.</p>
 
     <h2>3. Third-party services</h2>
-    <p>Form submissions on this site are processed by <a href="https://formspree.io" target="_blank" rel="noopener noreferrer">Formspree</a>, which stores submissions on our behalf and delivers them to our inbox. Formspree's privacy policy applies to data processed through their service.</p>
+    <p>Form submissions on this site are processed by <a href="https://formspree.io" target="_blank" rel="noopener noreferrer">Formspree</a>, which stores submissions on my behalf and delivers them to my inbox. Formspree's privacy policy applies to data processed through their service.</p>
     <p>The site is hosted on GitHub Pages. GitHub may collect basic server access logs (IP address, browser type, request path) as part of standard infrastructure operation.</p>
 
     <h2>4. Data retention</h2>
-    <p>We retain email addresses and contact form submissions for as long as they are relevant to an active inquiry or product relationship. You can request deletion at any time (see section 6).</p>
+    <p>I keep contact form submissions for as long as they're relevant to the conversation. You can request deletion at any time (see section 6).</p>
 
     <h2>5. Security</h2>
-    <p>We take reasonable measures to protect your data from unauthorised access. All data transmitted to and from this site uses HTTPS encryption.</p>
+    <p>I take reasonable measures to protect your data from unauthorised access. All data transmitted to and from this site uses HTTPS encryption.</p>
 
     <h2>6. Your rights</h2>
-    <p>You have the right to access, correct, or delete personal data we hold about you. To exercise any of these rights, email us at <a href="mailto:sudarsh@qualiteye.com">sudarsh@qualiteye.com</a> and we will respond within 30 days.</p>
+    <p>You have the right to access, correct or delete personal data I hold about you. To exercise any of these rights, email me at <a href={`mailto:${EMAIL}`}>{EMAIL}</a> and I'll respond within 30 days.</p>
 
     <h2>7. Changes to this policy</h2>
-    <p>We may update this policy as the product evolves. The date at the top of this page reflects the most recent revision. Continued use of the site after changes constitutes acceptance of the updated policy.</p>
+    <p>I may update this policy as the site changes. The date at the top of this page reflects the most recent revision.</p>
 
     <h2>8. Contact</h2>
     <p>
-      Qualiteye<br />
+      Sudarsh M. Sathianathan<br />
       Bengaluru, India<br />
-      <a href="mailto:sudarsh@qualiteye.com">sudarsh@qualiteye.com</a>
+      <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
     </p>
   </div>
 </div>
@@ -62,91 +56,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <style>
-  .privacy-page {
-    padding: 9rem 4rem 6rem;
-    min-height: 100vh;
-  }
-  .privacy-inner {
-    max-width: 680px;
-  }
-  .privacy-eyebrow {
-    font-family: var(--mono);
-    font-size: 0.65rem;
-    color: var(--accent);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-  .privacy-eyebrow::before {
-    content: '';
-    display: block;
-    width: 24px;
-    height: 1px;
-    background: var(--accent);
-  }
-  .privacy-page h1 {
-    font-family: var(--display);
-    font-size: 2.5rem;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    color: var(--text);
-    margin-bottom: 0.5rem;
-  }
-  .privacy-meta {
-    font-family: var(--mono);
-    font-size: 0.7rem;
-    color: var(--text3);
-    margin-bottom: 2rem;
-  }
-  .privacy-lead {
-    font-size: 1.05rem;
-    color: var(--text2);
-    line-height: 1.75;
-    margin-bottom: 2.5rem;
-  }
-  hr {
-    border: none;
-    border-top: 1px solid var(--border);
-    margin: 2rem 0;
-  }
-  .privacy-page h2 {
-    font-family: var(--display);
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--text);
-    margin-top: 2.5rem;
-    margin-bottom: 0.75rem;
-    letter-spacing: -0.01em;
-  }
-  .privacy-page p {
-    font-size: 0.95rem;
-    color: var(--text2);
-    line-height: 1.8;
-    margin-bottom: 1rem;
-  }
-  .privacy-page ul {
-    padding-left: 1.25rem;
-    margin-bottom: 1rem;
-  }
-  .privacy-page li {
-    font-size: 0.95rem;
-    color: var(--text2);
-    line-height: 1.7;
-    margin-bottom: 0.4rem;
-  }
-  .privacy-page strong { color: var(--text); }
-  .privacy-page a {
-    color: var(--accent);
-    text-decoration: none;
-    border-bottom: 1px solid rgba(108,71,255,0.3);
-    transition: border-color 0.2s;
-  }
-  .privacy-page a:hover { border-color: var(--accent); }
-
-  @media (max-width: 900px) {
-    .privacy-page { padding: 8rem 1.5rem 4rem; }
-  }
+  .privacy-page { animation: rise 0.7s ease-out both; }
+  .privacy-eyebrow { display: none; }
+  .privacy-page h1 { font-size: 1.05rem; font-weight: 600; color: var(--text); }
+  .privacy-meta { font-size: 0.875rem; color: var(--faint); margin: 0.25rem 0 1.5rem; }
+  .privacy-page hr { border: none; border-top: 1px solid var(--line); margin: 1.5rem 0; }
+  .privacy-page h2 { font-size: 1rem; font-weight: 600; color: var(--text); margin: 2rem 0 0.5rem; }
+  .privacy-page p, .privacy-page li { font-size: 0.97rem; }
+  .privacy-page p + p { margin-top: 0.75rem; }
+  .privacy-page ul { padding-left: 1.2rem; margin-top: 0.5rem; }
+  .privacy-page strong { color: var(--text); font-weight: 600; }
+  .privacy-page a { color: inherit; text-underline-offset: 3px; text-decoration-color: var(--line2); }
+  .privacy-page a:hover { color: var(--text); }
 </style>

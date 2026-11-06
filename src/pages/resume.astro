@@ -1,0 +1,224 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { EMAIL, LINKEDIN, GITHUB } from '../data/site';
+
+const summary = "QA Engineering Manager with 13+ years in quality engineering, who has twice joined as the first QA hire and built the function from scratch. At SpotDraft (700+ customers), built a team of 12, automation frameworks and a release governance model, cutting production defects by ~50%, regression time by ~60% and rollbacks from 6–7 in 10 releases to fewer than 1 in 10. Recently built Simulr, an AI testing product, working hands-on with Claude, Playwright and TypeScript.";
+
+const competencies = [
+  { label: 'Quality engineering leadership', items: ['Building QA functions from scratch', 'Hiring', 'Managing a team of 12 including a QA lead', 'Performance reviews', 'Competency frameworks', 'QA strategy', 'Release governance', 'Risk-based testing', 'RCA'] },
+  { label: 'AI and agentic testing', items: ['Testing LLM features', 'Evaluating non-deterministic outputs', 'Agentic browser testing with Claude and Playwright', 'Agent-driven delivery with Claude Code', 'Claude API'] },
+  { label: 'Automation and frameworks', items: ['Playwright', 'Cypress', 'Selenium', 'Rest Assured', 'Robot Framework', 'Cucumber (BDD)', 'Postman / Newman', 'TypeScript', 'JavaScript', 'Java', 'Python'] },
+  { label: 'CI/CD and engineering', items: ['GitHub Actions', 'Jenkins', 'CircleCI', 'Docker', 'AWS', 'GCP', 'REST and GraphQL API testing', 'SQL test data', 'Agile (Scrum)', 'SAFe'] },
+  { label: 'Observability and performance', items: ['Grafana', 'Datadog', 'Sentry', 'New Relic', 'JMeter', 'Gatling', 'Lighthouse', 'WCAG AA', 'TestRail', 'Testmo'] },
+];
+
+type Bullet = [lead: string, rest?: string];
+interface Job {
+  role: string;
+  company: string;
+  period: string;
+  context: string;
+  intro?: string;
+  groups: { heading?: string; bullets: Bullet[] }[];
+  stack?: string;
+  link?: { href: string; label: string };
+}
+
+const jobs: Job[] = [
+  {
+    role: 'Founder & Product Architect',
+    company: 'Simulr',
+    period: 'July 2025 – Present',
+    context: 'Independent AI engineering initiative · AI-powered testing platform · Bengaluru',
+    intro: 'Built an AI testing product in which Claude-driven agents use Playwright to test web applications like real users. Architected it end to end, worked hands-on in TypeScript and Python, and led a developer, two designers and a marketing lead through Phase 1.',
+    groups: [
+      {
+        heading: 'AI testing product',
+        bullets: [
+          ['Architected an agentic LLM testing loop:', 'captures the page accessibility tree, sends it to Claude to reason about the next action, executes it with Playwright and logs it, with every decision explained in plain English for product teams.'],
+          ['Designed configurable test personas and evaluation rules:', 'a JSON behaviour schema with a variance model so agents behave like different real users, plus usability heuristics, an error taxonomy and WCAG 2.1 checks so findings read like a UX research report, not bot logs.'],
+          ['Ran product discovery with product managers and founders:', 'demoed the platform and got positive feedback on the approach; learned that teams with existing UX backlogs could not take on new findings, which shaped positioning.'],
+        ],
+      },
+      {
+        heading: 'Agent-driven delivery pipeline (used to build Simulr)',
+        bullets: [
+          ['Built an agent-driven delivery pipeline with Claude Code and GitHub Actions:', 'acceptance criteria become frozen test scenarios; separate dev and test agents build code and Playwright tests in parallel, with scenario-to-test traceability checks, failure routing and AI PR review.'],
+        ],
+      },
+    ],
+    stack: 'TypeScript, Python, Claude API, Claude Code, Playwright, GitHub Actions, Next.js, FastAPI, Supabase (PostgreSQL)',
+    link: { href: '/work#simulr', label: 'Read the case study' },
+  },
+  {
+    role: 'QA Engineering Manager',
+    company: 'SpotDraft',
+    period: 'April 2022 – June 2025',
+    context: 'Enterprise SaaS · AI-powered contract lifecycle management · 700+ customers · Remote',
+    intro: 'Joined as the first QA hire, with no QA function, team or process, and led the QA function as its most senior member for a contract lifecycle platform with weekly releases, strict audit-trail and access-control requirements, and multi-step, data-critical workflows.',
+    groups: [
+      {
+        bullets: [
+          ['Built the QA team from zero to 12 engineers:', 'hired SDETs, senior and junior QA engineers across manual, automation and API testing; managed a QA lead; ran performance reviews, compensation decisions and career development; designed competency frameworks and growth paths.'],
+          ['Built the automation frameworks from scratch:', 'Cypress UI and Rest Assured API frameworks, plus Playwright for UI automation, integrated into CI/CD as quality gates; cut regression cycle time by ~60%.'],
+          ['Introduced a release governance model:', 'replaced ad-hoc, failure-prone deployments with a release-candidate process: RC branch cut from dev, deployed to staging, fixes cherry-picked, full regression on the frozen RC, then promotion to production against agreed release criteria. Rollbacks dropped from 6–7 in every 10 releases to fewer than 1 in 10.'],
+          ['Reduced production defects by ~50% and doubled internally caught bugs:', 'through regression coverage, shift-left testing, and a layered smoke, integration, regression and UAT strategy.'],
+          ['Led quality validation for VerifAI, the AI-powered contract review feature:', 'designed edge-case test strategies for LLM-generated contract reviews across diverse contract types, covering extraction accuracy, output reliability and workflow consistency of non-deterministic outputs.'],
+          ['Explored AI-assisted testing:', 'experimented with LLM-based test case authoring, AI-generated test data and failure triage to reduce repetitive work.'],
+        ],
+      },
+    ],
+  },
+  {
+    role: 'QA Lead',
+    company: 'Quintype',
+    period: 'June 2018 – March 2022',
+    context: 'Enterprise SaaS · Digital publishing platform for global media organisations',
+    groups: [
+      {
+        bullets: [
+          ['Owned quality strategy across product lines (Ahead, Page Builder, Arrow Library):', 'built Cypress UI and Rest Assured API frameworks running in CircleCI.'],
+          ['Introduced BDD and wider test coverage:', 'Cucumber scenarios aligned with product requirements, visual regression testing for theming, and scheduled Lighthouse performance audits.'],
+          ['Led RCA on recurring production issues and grew the team:', 'designed a QA competency matrix and mentored engineers through regular growth check-ins.'],
+        ],
+      },
+    ],
+  },
+  {
+    role: 'Senior QA Engineer',
+    company: 'BigBinary',
+    period: 'April 2015 – June 2018',
+    context: 'Custom software development · Healthcare, logistics and compliance platforms',
+    groups: [
+      {
+        bullets: [
+          ['Built automation suites from scratch for multiple client products:', 'Selenium and Robot Framework suites, plus JMeter load and stress tests to validate performance under high traffic.'],
+          ['Introduced structured QA in early-stage products:', 'healthcare compliance and logistics platforms; validated WCAG AA accessibility with UX teams.'],
+        ],
+      },
+    ],
+  },
+  {
+    role: 'QA Engineer',
+    company: 'Bang The Table (now Granicus)',
+    period: 'May 2012 – March 2015',
+    context: 'Australian SaaS · Community engagement platform',
+    groups: [
+      {
+        bullets: [
+          ['Joined as the first QA hire and set up QA from scratch:', "established the testing process for the company's community engagement platform."],
+          ['Took ownership of automation, CI and performance testing:', 'built cross-browser Selenium suites, set up Jenkins CI pipelines to run them, and introduced JMeter load testing and WCAG AA accessibility checks.'],
+        ],
+      },
+    ],
+  },
+];
+
+const howIWork = [
+  ['I start quality at the first conversation,', 'not after the first commit. Every requirement discussion is a quality conversation.'],
+  ['I treat testability as a design principle.', "If something is hard to test, it's hard to understand."],
+  ['I automate the predictable and explore the unpredictable.', 'Manual regression takes time away from work that needs people.'],
+  ['I put quality gates at every stage of the pipeline.', "If they don't exist at every stage, they're easy to skip."],
+  ["I don't treat production as the finish line.", 'Monitoring, feedback and iteration are quality work too.'],
+];
+---
+
+<BaseLayout
+  title="Resume — Sudarsh M. Sathianathan"
+  description="Resume of Sudarsh M. Sathianathan, a QA Engineering Manager in Bengaluru with 13+ years in quality engineering. Twice the first QA hire."
+  canonical="https://qualiteye.com/resume"
+  ogUrl="https://qualiteye.com/resume"
+>
+  <div class="stack">
+    <section class="animate">
+      <h1 class="title">Resume</h1>
+      <p style="margin-top:0.75rem"><span class="strong">Sudarsh M. Sathianathan</span> · QA Engineering Manager · Bengaluru, India</p>
+      <p style="margin-top:0.25rem"><a class="link" href={`mailto:${EMAIL}`}>{EMAIL}</a> · <a class="link" href={LINKEDIN} target="_blank" rel="noopener noreferrer">LinkedIn</a> · <a class="link" href={GITHUB} target="_blank" rel="noopener noreferrer">GitHub</a></p>
+    </section>
+
+    <section class="animate">
+      <div class="section-head"><h2>Summary</h2></div>
+      <p>{summary}</p>
+      <ul class="numbers">
+        <li><span class="strong">13+</span> years in quality engineering</li>
+        <li><span class="strong">~50%</span> fewer production defects at SpotDraft</li>
+        <li><span class="strong">~60%</span> faster regression at SpotDraft</li>
+        <li><span class="strong">under 1 in 10</span> releases rolled back at SpotDraft, down from 6–7</li>
+      </ul>
+    </section>
+
+    <section class="animate">
+      <div class="section-head"><h2>Experience</h2></div>
+      <ul class="timeline">
+        {jobs.map(job => (
+          <li>
+            <div class="timeline-date">{job.period}</div>
+            <div class="timeline-org">{job.company}</div>
+            <div class="timeline-role">{job.role}</div>
+            <div class="timeline-role dim">{job.context}</div>
+            <div class="timeline-body">
+              {job.intro && <p>{job.intro}</p>}
+              {job.groups.map(group => (
+                <>
+                  {group.heading && <p class="strong">{group.heading}</p>}
+                  <ul class="bullets">
+                    {group.bullets.map(([lead, rest]) => <li><strong>{lead}</strong> {rest}</li>)}
+                  </ul>
+                </>
+              ))}
+              {job.stack && <p><span class="strong">Stack:</span> {job.stack}</p>}
+              {job.link && <p><a class="link" href={job.link.href}>{job.link.label} →</a></p>}
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="animate">
+      <div class="section-head"><h2>Core competencies</h2></div>
+      <dl class="skills">
+        {competencies.map(group => (
+          <div>
+            <dt class="strong">{group.label}</dt>
+            <dd>{group.items.join(', ')}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+
+    <section class="animate">
+      <div class="section-head"><h2>How I work</h2></div>
+      <ul class="bullets">
+        {howIWork.map(([lead, rest]) => <li><strong>{lead}</strong> {rest}</li>)}
+      </ul>
+    </section>
+
+    <section class="animate">
+      <div class="section-head"><h2>Education</h2></div>
+      <div class="timeline-org">Kannur University, Kerala, India</div>
+      <div class="timeline-role">Bachelor of Technology (B.Tech), Computer Science</div>
+    </section>
+
+    <section class="animate">
+      <div class="section-head"><h2>Open to the right role</h2></div>
+      <p>QA Engineering Manager, Head of QA and AI quality engineering roles. Email <a class="link" href={`mailto:${EMAIL}`}>{EMAIL}</a> or use the <a class="link" href="/#contact">contact form</a>.</p>
+    </section>
+  </div>
+</BaseLayout>
+
+<style>
+  .numbers { list-style: none; margin-top: 1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem 1.5rem; font-size: 0.92rem; }
+  .skills { display: flex; flex-direction: column; gap: 0.75rem; }
+  .skills dd { font-size: 0.95rem; }
+  .timeline-body { font-size: 0.95rem; }
+
+  @media print {
+    .site-header, .site-footer { display: none; }
+    .site-main { padding-top: 1rem; }
+    .animate { animation: none; }
+  }
+
+  @media (max-width: 560px) {
+    .numbers { grid-template-columns: 1fr; }
+  }
+</style>

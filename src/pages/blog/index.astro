@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { articlesNewestFirst } from '../../data/articles';
+
+// Newest year first; articles are already newest first.
+const years = [...new Set(articlesNewestFirst.map(a => a.datePublished.slice(0, 4)))];
+const byYear = years.map(year => ({
+  year,
+  posts: articlesNewestFirst.filter(a => a.datePublished.startsWith(year)),
+}));
+---
+
+<BaseLayout
+  title="Blog — Sudarsh M. Sathianathan"
+  description="Articles by Sudarsh M. Sathianathan on quality engineering, test automation, CI/CD and AI testing."
+  canonical="https://qualiteye.com/blog"
+  ogUrl="https://qualiteye.com/blog"
+>
+  <div class="stack">
+    <section class="animate">
+      <h1 class="title">Blog</h1>
+      <p class="serif" style="margin-top:0.75rem">What I've learned about quality engineering, test automation and working with AI.</p>
+    </section>
+
+    {byYear.map(({ year, posts }) => (
+      <section class="animate">
+        <h2 class="strong" style="font-size:1rem;margin-bottom:1rem">{year}</h2>
+        <ul class="cards">
+          {posts.map(a => <ArticleCard article={a} showMeta />)}
+        </ul>
+      </section>
+    ))}
+  </div>
+</BaseLayout>

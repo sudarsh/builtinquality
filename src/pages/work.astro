@@ -1,0 +1,82 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { featuredArticle } from '../data/articles';
+
+const articleUrl = `/blog/${featuredArticle.slug}`;
+---
+
+<BaseLayout
+  title="Work — Sudarsh M. Sathianathan"
+  description="Case studies from Sudarsh M. Sathianathan: building Simulr, and the agent-driven delivery pipeline behind it."
+  canonical="https://qualiteye.com/work"
+  ogUrl="https://qualiteye.com/work"
+>
+  <div class="stack">
+    <section class="animate">
+      <h1 class="title">Work</h1>
+      <p class="serif" style="margin-top:0.75rem">A product I built, and the pipeline I build it with. My full work history is on my <a class="link" href="/resume">resume</a>.</p>
+    </section>
+
+    <!-- SIMULR -->
+    <article class="case animate" id="simulr">
+      <div class="timeline-date">Jul 2025 – present</div>
+      <h2 class="timeline-org">Simulr</h2>
+      <div class="timeline-role">Founder &amp; Product Architect</div>
+
+      <h3>Context</h3>
+      <p>QA tools check whether an app works. I wanted to test whether people understand it, so I built an AI testing product around configurable personas.</p>
+
+      <h3>What I did</h3>
+      <ul class="bullets">
+        <li>Built an agentic LLM testing loop: accessibility-tree capture, Claude reasoning, Playwright execution and action logging. The persona's decisions are explained in plain English.</li>
+        <li>Designed configurable personas using a JSON behaviour schema and a variance model.</li>
+        <li>Wrote evaluation rules based on usability heuristics, an error taxonomy and WCAG 2.1.</li>
+        <li>Created the UX Confusion Score.</li>
+        <li>Ran product discovery with PMs and founders.</li>
+      </ul>
+
+      <h3>Results</h3>
+      <p>PMs and founders liked the approach. I also learned that teams with existing UX backlogs couldn't take on new findings.</p>
+
+      <h3>Stack</h3>
+      <p>TypeScript, Python, Claude API, Playwright, Next.js, FastAPI, Supabase</p>
+
+      <p class="case-link"><a class="link" href="/simulr">See the Simulr page →</a></p>
+    </article>
+
+    <!-- AGENT PIPELINE -->
+    <article class="case animate" id="agent-pipeline">
+      <div class="timeline-date">Used to build Simulr</div>
+      <h2 class="timeline-org">Agent-driven delivery pipeline</h2>
+
+      <h3>Context</h3>
+      <p>Ask one agent to build a feature and write its tests, and the tests can only check that agent's own understanding of the requirement. I built this pipeline so agents prove their work against scenarios they didn't write the code from.</p>
+
+      <h3>What I did</h3>
+      <ul class="bullets">
+        <li>A Claude Code scenario agent turns acceptance criteria into structured scenarios.</li>
+        <li>Scenarios are reviewed and frozen.</li>
+        <li>Separate dev and test agents work on separate branches.</li>
+        <li>The test agent writes Playwright tests from the frozen scenarios, not from the dev code.</li>
+        <li>GitHub Actions runs unit, API and UI checks, plus scenario-to-test traceability.</li>
+        <li>Failures are classified and routed.</li>
+        <li>Pull requests get an AI review.</li>
+      </ul>
+
+      <h3>Results</h3>
+      <p>Tests come from agreed scenarios instead of the implementation, and traceability shows which scenarios have a test. I wrote up the full design, including what still needs people.</p>
+
+      <h3>Stack</h3>
+      <p>Claude Code, GitHub Actions, Playwright</p>
+
+      <p class="case-link"><a class="link" href={articleUrl}>Read the article: {featuredArticle.title} →</a></p>
+    </article>
+  </div>
+</BaseLayout>
+
+<style>
+  .case { scroll-margin-top: 6rem; }
+  .case h3 { margin: 1.5rem 0 0.4rem; font-size: 0.95rem; font-weight: 600; color: var(--text); }
+  .case p, .case li { font-size: 0.97rem; }
+  .case-link { margin-top: 1.5rem; }
+</style>

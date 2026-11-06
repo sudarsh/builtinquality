@@ -1,471 +1,88 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { articles } from '../data/articles';
-import { stack } from '../data/stack';
+import ArticleCard from '../components/ArticleCard.astro';
+import ArrowCard from '../components/ArrowCard.astro';
+import { articlesNewestFirst } from '../data/articles';
+import { person, LINKEDIN, GITHUB, EMAIL } from '../data/site';
+
+const latest = articlesNewestFirst.slice(0, 3);
+
+const projects = [
+  { href: '/work#simulr', eyebrow: 'Founder & Product Architect', title: 'Simulr', desc: 'An agentic LLM testing loop: AI personas use a product in a real browser and explain each decision in plain English.' },
+  { href: '/work#agent-pipeline', eyebrow: 'How I build Simulr', title: 'Agent-driven delivery pipeline', desc: 'Scenarios are frozen first. Separate dev and test agents work from them on separate branches.' },
+];
 
 const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
+  '@context': 'https://schema.org',
+  '@graph': [
     {
-      "@type": "Organization",
-      "name": "Qualiteye",
-      "url": "https://qualiteye.com",
-      "description": "Qualiteye is an AI product studio building tools for product teams. We make Simulr — AI user personas that test your product and documentation before real users do.",
-      "founder": { "@id": "https://qualiteye.com/#sudarsh" },
-      "foundingLocation": "Bengaluru, India"
+      ...person,
+      jobTitle: 'QA Engineering Manager',
+      description: 'QA Engineering Manager with 13+ years in quality engineering. Builds QA functions from scratch and works hands-on with AI testing.',
+      address: { '@type': 'PostalAddress', addressLocality: 'Bengaluru', addressCountry: 'IN' },
     },
     {
-      "@type": "SoftwareApplication",
-      "name": "Simulr",
-      "url": "https://qualiteye.com/simulr",
-      "description": "AI personas that test your product like real users — surfacing UX issues and documentation gaps before a single real user sees them.",
-      "applicationCategory": "DeveloperApplication",
-      "author": { "@id": "https://qualiteye.com/#sudarsh" }
+      '@type': 'WebSite',
+      name: 'Qualiteye',
+      url: 'https://qualiteye.com/',
+      author: { '@id': person['@id'] },
     },
-    {
-      "@type": "Person",
-      "@id": "https://qualiteye.com/#sudarsh",
-      "name": "Sudarsh M. Sathianathan",
-      "jobTitle": "Founder, Qualiteye",
-      "description": "Founder of Qualiteye, building AI tools for product teams with 13+ years in quality engineering.",
-      "url": "https://qualiteye.com/#about"
-    }
-  ]
+  ],
 };
 ---
 
 <BaseLayout
-  title="Qualiteye — AI Tools for Product Teams"
-  description="Qualiteye is an AI product studio building tools for product teams. We make Simulr — AI user personas that test your product and documentation before real users do."
+  title="Sudarsh M. Sathianathan — QA Engineering Manager"
+  description="QA Engineering Manager with 13+ years in quality engineering. Twice the first QA hire. Now working hands-on with Claude, Playwright and TypeScript on agent-driven testing and delivery."
   canonical="https://qualiteye.com/"
-  ogTitle="Qualiteye — AI Tools for Product Teams"
-  ogDescription="Qualiteye builds Simulr — AI user personas that navigate your product like real people, surfacing UX failures and documentation gaps in minutes, not weeks."
   ogUrl="https://qualiteye.com/"
   jsonLd={jsonLd}
 >
-  <link rel="stylesheet" href="/src/styles/hero.css" slot="head" />
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="grid-bg"></div>
-    <div class="orb1"></div>
-    <div class="orb2"></div>
-    <div class="hero-layout">
-      <div class="hero-inner">
-        <div class="hero-badge"><div class="pulse"></div>AI Product Studio · Bengaluru, India</div>
-        <h1>We build tools that find problems <span class="hl">before your users do.</span></h1>
-        <p class="hero-sub">
-          Qualiteye builds AI-powered software for product teams. Our first product, Simulr, replaces expensive user research with AI personas that navigate your product like real people — surfacing UX failures and documentation gaps in minutes.
-        </p>
-        <div class="hero-ctas">
-          <a href="/simulr" class="hero-cta-primary">Explore Simulr →</a>
-          <a href="/#contact" class="hero-cta-secondary">Get in touch</a>
-        </div>
-        <div class="hero-meta">
-          <div class="hero-author">
-            <div class="avatar">S</div>
-            <div class="author-info">
-              <span class="author-name">Sudarsh M. Sathianathan</span>
-              <span class="author-role">Founder · Qualiteye</span>
-            </div>
-          </div>
-          <div class="divider-v"></div>
-          <div class="hero-stat"><span class="stat-num">1</span><span class="stat-label">Product</span></div>
-          <div class="divider-v"></div>
-          <div class="hero-stat"><span class="stat-num">13+</span><span class="stat-label">Yrs in QA</span></div>
-          <div class="divider-v"></div>
-          <div class="hero-stat"><span class="stat-num">Early</span><span class="stat-label">Access</span></div>
-        </div>
+  <div class="stack">
+    <section class="animate">
+      <h1 class="title">Hi, I'm Sudarsh.</h1>
+      <div class="prose-plain" style="margin-top:1rem">
+        <p>I'm a QA Engineering Manager in Bengaluru with 13+ years in quality engineering. I've been the first QA hire twice, and I build quality functions from scratch: strategy, hiring and release governance.</p>
+        <p>On the technical side I build automation with Playwright, Cypress and Rest Assured, run it as CI/CD quality gates, and test LLM features.</p>
+        <p>Since July 2025 I've been building <a class="link" href="/simulr">Simulr</a>, an AI testing product, hands-on with Claude, Playwright and TypeScript. I build it with an <a class="link" href="/work#agent-pipeline">agent-driven delivery pipeline</a> and write about what I learn on the <a class="link" href="/blog">blog</a>.</p>
+        <p>Here's my <a class="link" href="/resume">resume</a> and my <a class="link" href="/work">work</a>.</p>
       </div>
-      <div class="hero-image">
-        <div class="hero-product-card">
-          <div class="hpc-eyebrow">Flagship Product</div>
-          <img src="/assets/simulr-logo-black.svg" alt="Simulr" class="hpc-logo" />
-          <p class="hpc-desc">AI personas that test your product like real users — surfacing UX issues and documentation gaps before a single real user sees them.</p>
-          <div class="hpc-tags">
-            <span>AI Testing</span>
-            <span>UX Research</span>
-            <span>Doc Validation</span>
-          </div>
-          <a href="/simulr" class="hpc-link">View product →</a>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SIMULR CAPABILITIES STRIP -->
-  <div class="lifecycle">
-    <div class="lifecycle-inner">
-      <div class="lc-step"><div class="lc-icon">🤖</div><div class="lc-label">AI Personas</div><div class="lc-sub">Simulate real user behavior</div><div class="lc-badge">Simulr</div></div>
-      <div class="lc-step"><div class="lc-icon">🎯</div><div class="lc-label">Mission Testing</div><div class="lc-sub">Goal-oriented navigation</div><div class="lc-badge">Simulr</div></div>
-      <div class="lc-step"><div class="lc-icon">📄</div><div class="lc-label">Doc Validation</div><div class="lc-sub">Stale content detection</div><div class="lc-badge">Simulr</div></div>
-      <div class="lc-step"><div class="lc-icon">📊</div><div class="lc-label">Sim Reports</div><div class="lc-sub">Plain-English output</div><div class="lc-badge">Simulr</div></div>
-      <div class="lc-step"><div class="lc-icon">🔥</div><div class="lc-label">Click Heatmaps</div><div class="lc-sub">Visual attention data</div><div class="lc-badge">Simulr</div></div>
-      <div class="lc-step"><div class="lc-icon">🧠</div><div class="lc-label">Sim Imprint</div><div class="lc-sub">Real user fingerprint</div><div class="lc-badge">Phase 3</div></div>
-    </div>
-  </div>
-
-  <!-- PRODUCTS -->
-  <section class="section products-section" id="products">
-    <div class="section-label">What We Build</div>
-    <div class="section-title">Our Products</div>
-    <p class="section-desc">We build AI-powered tools that give product teams the insights they need to ship with confidence.</p>
-    <div class="products-grid">
-      <div class="product-card product-card-featured">
-        <div class="pc-header">
-          <img src="/assets/simulr-logo-black.svg" alt="Simulr" class="pc-logo" />
-          <div class="pc-badges">
-            <span class="pc-status">Early Access</span>
-            <span class="pc-tag">AI · UX Testing</span>
-          </div>
-        </div>
-        <p class="pc-desc">AI personas that test your product like real users — surfacing UX issues, confusion points, and documentation gaps in minutes, not weeks. No user recruiting. No waiting on analytics.</p>
-        <div class="pc-features">
-          <div class="pc-feat"><span class="pc-feat-icon">🎭</span>Build AI personas with customisable behavioral profiles</div>
-          <div class="pc-feat"><span class="pc-feat-icon">🎯</span>Set plain-English goal missions and watch Sims navigate live</div>
-          <div class="pc-feat"><span class="pc-feat-icon">📄</span>Detect stale onboarding documentation automatically</div>
-          <div class="pc-feat"><span class="pc-feat-icon">📋</span>Get shareable plain-English reports, not test logs</div>
-        </div>
-        <a href="/simulr" class="pc-cta">Explore Simulr →</a>
+    <section class="animate">
+      <div class="section-head">
+        <h2>Latest posts</h2>
+        <a class="link" href="/blog">See all posts</a>
       </div>
-    </div>
-  </section>
+      <ul class="cards">
+        {latest.map(a => <ArticleCard article={a} />)}
+      </ul>
+    </section>
 
-  <!-- ARTICLES -->
-  <section class="section" id="articles">
-    <div class="section-label">From the Blog</div>
-    <div class="section-title">Latest Articles</div>
-    <p class="section-desc">Engineering perspectives on quality, automation, and building better products.</p>
-    <div class="articles-grid">
-      {articles.map(a => (
-        <a class="article-card" href={`/articles/${a.num}`} style="text-decoration:none;color:inherit;display:block;">
-          <div class="card-meta">
-            <span class={`card-tag tag-${a.tag}`}>{a.tagLabel}</span>
-            <span class="card-date">{a.date}</span>
-          </div>
-          <div class="card-num">{a.num}</div>
-          <div class="card-title">{a.title}</div>
-          <p class="card-excerpt">{a.excerpt}</p>
-          <div class="card-footer">
-            <span class="card-read">{a.read}</span>
-            <span class="card-arrow">→</span>
-          </div>
-        </a>
-      ))}
-    </div>
-  </section>
+    <section class="animate">
+      <div class="section-head">
+        <h2>Projects</h2>
+        <a class="link" href="/work">See all work</a>
+      </div>
+      <ul class="cards">
+        {projects.map(p => <ArrowCard href={p.href} title={p.title} desc={p.desc} />)}
+      </ul>
+    </section>
 
-  <!-- PHILOSOPHY -->
-  <section class="philosophy" id="philosophy">
-    <div class="section-label">Our Principles</div>
-    <div class="section-title">The Qualiteye Philosophy</div>
-    <p class="section-desc">Quality is not a department. It's not a phase. It's a shared responsibility — engineered into every decision, every line of code, every deployment. It's why we built Qualiteye.</p>
-    <div class="philosophy-grid">
-      <div class="philosophy-manifesto">
-        <div class="manifesto-label">// manifesto.md</div>
-        <div class="manifesto-line"><span class="ml-num">01</span><span class="ml-text"><strong>Quality starts at the first conversation</strong> — not after the first commit. Every requirement discussion is a quality conversation.</span></div>
-        <div class="manifesto-line"><span class="ml-num">02</span><span class="ml-text"><strong>Testability is a design principle</strong> — if it's hard to test, it's hard to understand. Design for clarity and testability equally.</span></div>
-        <div class="manifesto-line"><span class="ml-num">03</span><span class="ml-text"><strong>Automation is not optional</strong> — manual regression is a tax on your team's creativity. Automate the predictable, explore the unpredictable.</span></div>
-        <div class="manifesto-line"><span class="ml-num">04</span><span class="ml-text"><strong>The pipeline is the last line of defence</strong> — quality gates must exist at every stage, or they exist at none.</span></div>
-        <div class="manifesto-line"><span class="ml-num">05</span><span class="ml-text"><strong>Production is not the finish line</strong> — shipping is the beginning. Monitoring, feedback, and iteration are quality work too.</span></div>
+    <section class="animate" id="contact">
+      <div class="section-head">
+        <h2>Let's connect</h2>
       </div>
-      <div class="pillars">
-        <div class="pillar"><div class="pillar-icon pi-cyan">🔍</div><div><div class="pillar-title">Shift Left Thinking</div><p class="pillar-desc">Catch defects where they're cheapest to fix — in requirements, design, and architecture — not in production.</p></div></div>
-        <div class="pillar"><div class="pillar-icon pi-purple">🤖</div><div><div class="pillar-title">AI-Augmented Quality</div><p class="pillar-desc">Use AI to generate, review, and maintain tests faster — freeing engineers to focus on strategy and exploration.</p></div></div>
-        <div class="pillar"><div class="pillar-icon pi-green">🔄</div><div><div class="pillar-title">Continuous Feedback Loops</div><p class="pillar-desc">Quality signals must flow in real time — from CI pipelines, production monitors, and user behaviour data.</p></div></div>
-        <div class="pillar"><div class="pillar-icon pi-amber">🏗️</div><div><div class="pillar-title">Quality as Architecture</div><p class="pillar-desc">System design decisions determine 80% of your defect rate. Quality engineers must have a seat at the architecture table.</p></div></div>
-      </div>
-    </div>
-    <div class="terminal">
-      <div class="terminal-bar"><div class="t-dot td1"></div><div class="t-dot td2"></div><div class="t-dot td3"></div><span class="t-title">quality-check.sh — CI Pipeline</span></div>
-      <div class="terminal-body">
-        <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">npm run lint</span><span class="t-comment">              # Static quality gate</span></div>
-        <div class="t-line"><span class="t-out">✔ ESLint passed — 0 errors, 0 warnings</span></div>
-        <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">npm run test:unit</span><span class="t-comment">         # Unit test gate</span></div>
-        <div class="t-line"><span class="t-out">✔ 247 tests passed · Coverage: 94.2%</span></div>
-        <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">npx playwright test</span><span class="t-comment">       # E2E quality gate</span></div>
-        <div class="t-line"><span class="t-out">✔ 35 tests passed · 3 browsers · 0 failures</span></div>
-        <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">npm run test:visual</span><span class="t-comment">       # Snapshot gate</span></div>
-        <div class="t-line"><span class="t-out">✔ Visual snapshots matched — no regressions</span></div>
-        <div class="t-line"><span class="t-prompt">$</span> <span class="t-cmd">./deploy.sh --env=production</span></div>
-        <div class="t-line"><span class="t-out2">🚀 All quality gates passed — deploying to production</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- TECH STACK -->
-  <section class="section" id="stack">
-    <div class="section-label">Tools & Technologies</div>
-    <div class="section-title">My Tech Stack</div>
-    <p class="section-desc">The tools I use daily to build, automate, and maintain quality across the full software lifecycle.</p>
-    <div class="stack-grid">
-      {stack.map(s => (
-        <div class="stack-item">
-          <div class="stack-icon">{s.icon}</div>
-          <div class="stack-name">{s.name}</div>
-          <div class="stack-role">{s.role}</div>
-        </div>
-      ))}
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section class="section about-section" id="about">
-    <div class="section-label">The Founder</div>
-    <div class="section-title">About Qualiteye</div>
-    <div class="about-grid">
-      <div class="about-card">
-        <img src="/assets/sudarsh.jpeg" alt="Sudarsh" class="about-avatar" style="object-fit:cover;" />
-        <div class="about-name">Sudarsh</div>
-        <div class="about-title-role">Founder · Qualiteye</div>
-        <p class="about-location">Bengaluru, India</p>
-        <div class="about-social">
-          <a href="https://www.linkedin.com/in/sudarshms/" target="_blank" rel="noopener noreferrer" class="about-social-link" title="LinkedIn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-          </a>
-          <a href="https://github.com/sudarsh" target="_blank" rel="noopener noreferrer" class="about-social-link" title="GitHub">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-          </a>
-        </div>
-        <div class="about-stats">
-          <div class="astat"><div class="astat-num">13+</div><div class="astat-label">Years in QA</div></div>
-          <div class="astat"><div class="astat-num">2026</div><div class="astat-label">Founded</div></div>
-          <div class="astat"><div class="astat-num">1</div><div class="astat-label">Live Product</div></div>
-          <div class="astat"><div class="astat-num">BLR</div><div class="astat-label">India</div></div>
-        </div>
-      </div>
-      <div>
-        <div class="about-bio">
-          <p>Qualiteye was founded by Sudarsh M. Sathianathan, a quality engineer with 13+ years building software that other people inherit — frameworks, pipeline gates, and the standards teams rely on long after you've moved on.</p>
-          <p><strong>Simulr is our first product</strong> — built from a simple observation: product teams ship blind. You test if the app works. Nobody tests if real users understand it. Simulr fixes that by running AI personas through your product before a single real user sees it.</p>
-          <p>Qualiteye is based in Bengaluru, India. We're currently in early access and looking for product teams to build with.</p>
-        </div>
-        <div class="expertise-list">
-          <div class="exp-item"><div class="exp-dot"></div>AI user persona simulation (Simulr)</div>
-          <div class="exp-item"><div class="exp-dot"></div>UX testing & documentation gap detection</div>
-          <div class="exp-item"><div class="exp-dot"></div>QA strategy & engineering consulting</div>
-          <div class="exp-item"><div class="exp-dot"></div>End-to-end automation with Playwright & TypeScript</div>
-          <div class="exp-item"><div class="exp-dot"></div>CI/CD pipeline design with quality gates</div>
-          <div class="exp-item"><div class="exp-dot"></div>Shift-left quality & testability architecture</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section class="contact-section" id="contact">
-    <div class="contact-inner">
-      <div class="section-label">Get in Touch</div>
-      <div class="section-title">Work With Qualiteye</div>
-      <p class="section-desc">Early access to Simulr, consulting engagements, partnerships, or a conversation about quality engineering — we're open to it all.</p>
-      <form class="contact-form" action="https://formspree.io/f/mjgpgraq" method="POST">
+      <p class="serif">I'm open to QA Engineering Manager, Head of QA and AI quality engineering roles. Email <a class="link" href={`mailto:${EMAIL}`}>{EMAIL}</a>, find me on <a class="link" href={LINKEDIN} target="_blank" rel="noopener noreferrer">LinkedIn</a> or <a class="link" href={GITHUB} target="_blank" rel="noopener noreferrer">GitHub</a>, or send a message here.</p>
+      <form class="form" action="https://formspree.io/f/mjgpgraq" method="POST">
         <div class="form-row">
-          <div class="form-group"><label class="form-label">Name</label><input class="form-input" type="text" name="name" placeholder="Your name" required /></div>
-          <div class="form-group"><label class="form-label">Email</label><input class="form-input" type="email" name="email" placeholder="your@email.com" required /></div>
+          <label>Name<input type="text" name="name" required /></label>
+          <label>Email<input type="email" name="email" required /></label>
         </div>
-        <div class="form-group"><label class="form-label">Subject</label><input class="form-input" type="text" name="subject" placeholder="What's on your mind?" /></div>
-        <div class="form-group"><label class="form-label">Message</label><textarea class="form-textarea" name="message" placeholder="Tell me more..." required></textarea></div>
-        <button class="btn-submit" type="submit">Send Message →</button>
+        <label>Subject<input type="text" name="subject" /></label>
+        <label>Message<textarea name="message" required></textarea></label>
+        <button class="button" type="submit">Send message</button>
       </form>
-    </div>
-  </section>
+    </section>
+  </div>
 </BaseLayout>
-
-<style>
-  @import '../styles/hero.css';
-  @import '../styles/articles.css';
-  @import '../styles/philosophy.css';
-  @import '../styles/stack.css';
-
-  /* ── HERO CTAS ── */
-  .hero-ctas {
-    margin-top: 2rem;
-    margin-bottom: 2.5rem;
-    display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    animation: fadeUp 0.5s 0.3s ease both;
-  }
-  .hero-cta-primary {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.7rem 1.5rem;
-    background: var(--accent);
-    color: #fff;
-    text-decoration: none;
-    border-radius: 6px;
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.05em;
-    font-weight: 600;
-    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-  }
-  .hero-cta-primary:hover {
-    background: var(--accent2);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 20px rgba(108,71,255,0.3);
-  }
-  .hero-cta-secondary {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.7rem 1.5rem;
-    background: transparent;
-    color: var(--text2);
-    text-decoration: none;
-    border-radius: 6px;
-    border: 1px solid var(--border2);
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.05em;
-    transition: border-color 0.2s, color 0.2s, background 0.2s;
-  }
-  .hero-cta-secondary:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-    background: rgba(108,71,255,0.04);
-  }
-
-  /* ── HERO PRODUCT CARD ── */
-  .hero-product-card {
-    background: var(--bg);
-    border: 1px solid rgba(108,71,255,0.25);
-    border-radius: 16px;
-    padding: 2rem;
-    box-shadow: 0 4px 24px rgba(108,71,255,0.08), 0 1px 4px rgba(0,0,0,0.06);
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
-  }
-  .hpc-eyebrow {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    color: var(--accent);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    border: 1px solid rgba(108,71,255,0.22);
-    background: rgba(108,71,255,0.06);
-    padding: 0.2rem 0.65rem;
-    border-radius: 3px;
-    display: inline-block;
-    width: fit-content;
-  }
-  .hpc-logo { height: 28px; width: auto; }
-  .hpc-desc {
-    color: var(--text2);
-    font-size: 0.9rem;
-    line-height: 1.7;
-  }
-  .hpc-tags { display: flex; gap: 8px; flex-wrap: wrap; }
-  .hpc-tags span {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    color: var(--accent);
-    background: rgba(108,71,255,0.06);
-    border: 1px solid rgba(108,71,255,0.2);
-    padding: 0.2rem 0.6rem;
-    border-radius: 3px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-  .hpc-link {
-    color: var(--accent);
-    font-family: var(--mono);
-    font-size: 0.78rem;
-    text-decoration: none;
-    letter-spacing: 0.05em;
-    font-weight: 600;
-    transition: color 0.2s;
-    width: fit-content;
-  }
-  .hpc-link:hover { color: var(--accent2); }
-
-  /* ── PRODUCTS SECTION ── */
-  .products-section { background: var(--bg2); }
-  .products-grid { margin-top: 2.5rem; }
-  .product-card {
-    background: var(--bg);
-    border: 1px solid var(--border);
-    border-radius: 16px;
-    padding: 2.5rem;
-    max-width: 700px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-  }
-  .product-card-featured {
-    border-color: rgba(108,71,255,0.3);
-    box-shadow: 0 4px 24px rgba(108,71,255,0.08), 0 1px 4px rgba(0,0,0,0.04);
-  }
-  .pc-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1.25rem;
-  }
-  .pc-logo { height: 26px; width: auto; }
-  .pc-badges { display: flex; gap: 8px; align-items: center; }
-  .pc-status {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    color: var(--accent);
-    background: rgba(108,71,255,0.07);
-    border: 1px solid rgba(108,71,255,0.22);
-    padding: 0.2rem 0.6rem;
-    border-radius: 3px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-  .pc-tag {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    color: var(--text3);
-    background: var(--bg2);
-    border: 1px solid var(--border2);
-    padding: 0.2rem 0.6rem;
-    border-radius: 3px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-  .pc-desc {
-    color: var(--text2);
-    font-size: 1rem;
-    line-height: 1.75;
-    margin-bottom: 1.5rem;
-  }
-  .pc-features {
-    display: flex;
-    flex-direction: column;
-    gap: 0.65rem;
-    margin-bottom: 2rem;
-    padding: 1.25rem;
-    background: var(--bg2);
-    border-radius: 8px;
-    border: 1px solid var(--border);
-  }
-  .pc-feat {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.65rem;
-    font-size: 0.9rem;
-    color: var(--text2);
-    line-height: 1.5;
-  }
-  .pc-feat-icon { flex-shrink: 0; font-size: 1rem; margin-top: 0.05rem; }
-  .pc-cta {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.7rem 1.5rem;
-    background: var(--accent);
-    color: #fff;
-    text-decoration: none;
-    border-radius: 6px;
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
-  }
-  .pc-cta:hover {
-    background: var(--accent2);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 20px rgba(108,71,255,0.3);
-  }
-</style>
